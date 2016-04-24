@@ -22,8 +22,12 @@
 ;; ("\\`/:" . file-name-non-special))
 ;; Which means on every .el and .elc file loaded during start up, it has to runs those regexps against the filename.
 (let ((file-name-handler-alist nil))
+  (require 'init-site-lisp) ;; Must come before elpa, as it may provide package.el ,before package from dir "site-lisp"
+  
   (require 'init-mysettings)
   (require 'init-color-theme)
+  
+  ;(require 'init-evil)
   
   ;; Windows configuration, assuming that cygwin is installed at "c:/cygwin"
   ;; (condition-case nil

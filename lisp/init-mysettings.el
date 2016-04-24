@@ -1,18 +1,25 @@
 ;; -*-Emacs-Lisp-*-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; 在标题栏提示你目前在什么位置
-(setq frame-title-format "BRYAN@%b")
+;;在标题栏提示你目前在什么位置
+;(setq frame-title-format "BRYAN@%b")
+
+
+;;use melpa
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(package-initialize) 
+
 
 ;;设置有用的个人信息,这在很多地方有用。
 (setq user-full-name "Biran")
 (setq user-mail-address "blrbiran@163.com")
 
-;; 显示括号匹配
+;;显示括号匹配
 (show-paren-mode t)
 (setq show-paren-style 'parentheses)
 
-;; 显示时间，格式如下   
+;;显示时间，格式如下   
 (display-time-mode 1)
 (setq display-time-24hr-format t);;时间使用24小时制
 ;(setq display-time-day-and-date t);;时间显示包括日期和具体时间
@@ -50,13 +57,13 @@
 ;; End ????????????????????????????????
 
 ;;自动保存模式
-;;(setq auto-save-mode 0)
+;(setq auto-save-mode nil)
 
 ;; 设定不产生备份文件
-(setq make-backup-files 0)
+(setq make-backup-files nil)
 
 ;; 不生成临时文件
-(setq-default make-backup-files 0)
+(setq-default make-backup-files nil)
 
 ;; 当光标在行尾上下移动的时候，始终保持在行尾。
 (setq track-eol t)
@@ -105,7 +112,7 @@
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
 ;;9 显示行号
-(global-linum-mode 1)
+(global-linum-mode t)
 
 ;;10 改变 Emacs 固执的要你回答 yes 的行为。按 y 或空格键表示 yes，n 表示 no。
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -200,6 +207,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 ;;------语言环境字符集设置结束------------
 
 ;;git-emacs
+;;git clone https://github.com/tsgates/git-emacs.git
 (add-to-list 'load-path "~/.emacs.d/git-emacs/")
 (require 'git-emacs)
 
