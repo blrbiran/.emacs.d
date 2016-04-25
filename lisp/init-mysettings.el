@@ -26,11 +26,11 @@
 (setq display-time-use-mail-icon t);;时间栏旁边启用邮件设置
 ;(setq display-time-interval 10);;时间的变化频率，单位多少来着？
 
-;;tab键为8个字符宽度
+;;tab键为4个字符宽度
 (setq default-tab-width 4)
 
 ;;光标靠近鼠标指针时，让鼠标指针自动让开，别挡住视线。
-(mouse-avoidance-mode 'animate)
+;(mouse-avoidance-mode 'animate)
 
 ;;设置粘贴缓冲条目数量.用一个很大的kill ring(最多的记录个数). 这样防止我不小心删掉重要的东西
 (setq kill-ring-max 200)
@@ -90,12 +90,19 @@
 (define-prefix-command 'ctl-z-map)
 (global-set-key (kbd "C-z") 'ctl-z-map)
 
-;;4 用C-z i快速打开~/.emacs文件。  
-(defun open-init-file()
+;;4.1 用C-z i快速打开~/.emacs文件。  
+(defun open-mysetting-file()
   (interactive)
   (find-file "~/.emacs.d/lisp/init-mysettings.el"))
 
-(global-set-key "\C-zi" 'open-init-file)
+(global-set-key "\C-zi" 'open-mysetting-file)
+
+;;4.2 用C-z C-i快速打开~/.emacs文件。  
+(defun open-init-file()
+  (interactive)
+  (find-file "~/.emacs.d/init.el"))
+
+(global-set-key "\C-z\C-i" 'open-init-file)
 
 ;;5 C-Space被输入法占用，改用C-c m来标记文本块
 (global-set-key "\C-cm" 'set-mark-command)
@@ -139,9 +146,9 @@
 (defun open-key-info-file()
   (interactive)
   (split-window-horizontally)
-  (find-file-other-window "~/emacskeys.txt")
-;  (org-mode)
-  (outline-mode)
+  (find-file-other-window "~/.emacs.d/emacskeys.txt")
+  (org-mode)
+;  (outline-mode)
   (hide-body))
 
 (global-set-key "\C-zk" 'open-key-info-file)
@@ -211,6 +218,6 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 (add-to-list 'load-path "~/.emacs.d/git-emacs/")
 (require 'git-emacs)
 
- 
+
 (provide 'init-mysettings)
 
