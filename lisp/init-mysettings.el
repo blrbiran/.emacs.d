@@ -2,29 +2,27 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;在标题栏提示你目前在什么位置
-;(setq frame-title-format "BRYAN@%b")
+(setq frame-title-format "emacs@%b")
 
 
 ;;use melpa
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-(package-initialize) 
+(package-initialize)
 
 
 ;;设置有用的个人信息,这在很多地方有用。
 (setq user-full-name "Biran")
 (setq user-mail-address "blrbiran@163.com")
 
+;;关闭开机画面
+(setq inhibit-startup-message t)
+
 ;;显示括号匹配
 (show-paren-mode t)
 (setq show-paren-style 'parentheses)
 
-;;显示时间，格式如下   
-(display-time-mode 1)
-(setq display-time-24hr-format t);;时间使用24小时制
-;(setq display-time-day-and-date t);;时间显示包括日期和具体时间
-(setq display-time-use-mail-icon t);;时间栏旁边启用邮件设置
-;(setq display-time-interval 10);;时间的变化频率，单位多少来着？
+
 
 ;;tab键为4个字符宽度
 (setq default-tab-width 4)
@@ -133,7 +131,7 @@
 (setq locale-coding-system 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
-;(set-selection-coding-system 'utf-8)
+(set-selection-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
 
 ;;13 打开一个新的shell
@@ -217,6 +215,22 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 ;;git clone https://github.com/tsgates/git-emacs.git
 (add-to-list 'load-path "~/.emacs.d/git-emacs/")
 (require 'git-emacs)
+
+
+
+;;显示时间，格式如下
+;;
+;(require 'calendar)
+;(setq calendar-date-display-form '(month "/" day "/" (substring year -2)))
+;(require 'calendar)
+;(setq display-time-string-forms '((calendar-julian-date-string)))
+;(display-time)
+
+(display-time-mode 1)
+(setq display-time-24hr-format t);;时间使用24小时制
+(setq display-time-day-and-date t);;时间显示包括日期和具体时间
+;(setq display-time-use-mail-icon t);;时间栏旁边启用邮件设置
+(setq display-time-interval 30);;时间的变化频率，单位 s
 
 
 (provide 'init-mysettings)
