@@ -24,9 +24,12 @@
 (let ((file-name-handler-alist nil))
   (require 'init-site-lisp) ;; Must come before elpa, as it may provide package.el ,before package from dir "site-lisp"
   (require 'init-my-org-mode)
-  
-  (require 'init-mysettings)
+  (require 'init-my-org-agenda)
   (require 'init-color-theme)
+
+  (require 'init-my-module)
+  (require 'speak-mode)  ;; my speak mode ; C-c C-a a to speak the buffer; C-c C-a e to interrupt
+  (require 'init-mysettings)
   
   ;(require 'init-evil)
   

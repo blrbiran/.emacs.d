@@ -10,7 +10,6 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (package-initialize)
 
-
 ;;设置有用的个人信息,这在很多地方有用。
 (setq user-full-name "Biran")
 (setq user-mail-address "blrbiran@163.com")
@@ -22,7 +21,8 @@
 (show-paren-mode t)
 (setq show-paren-style 'parentheses)
 
-
+;;自动断行，每行80个字符
+(setq fill-column 80)
 
 ;;tab键为4个字符宽度
 (setq default-tab-width 4)
@@ -80,9 +80,10 @@
 ;(global-set-key "\C-c\C-n" 'execute-extended-command)
 
 ;;2 系统剪贴板快捷键（C-c C-c复制，C-c C-v粘贴，C-c x剪切）
-(global-set-key "\C-c\C-c" 'clipboard-kill-ring-save)
-(global-set-key "\C-cx" 'clipboard-kill-region)
-(global-set-key "\C-c\C-v" 'clipboard-yank)
+;;C-c C-c 很多时候会与常用快捷键冲突
+;(global-set-key "\C-c\C-c" 'clipboard-kill-ring-save)
+;(global-set-key "\C-cx" 'clipboard-kill-region)
+;(global-set-key "\C-c\C-v" 'clipboard-yank)
 
 ;;3 允许使用C-z作为命令前缀
 (define-prefix-command 'ctl-z-map)
@@ -131,8 +132,9 @@
 (setq locale-coding-system 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
+;(set-clipboard-coding-system 'utf-8)
 ;(set-selection-coding-system 'utf-8)
-(prefer-coding-system 'utf-8)
+;(prefer-coding-system 'utf-8)
 
 ;;13 打开一个新的shell
 (defun newshell (name)

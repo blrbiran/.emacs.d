@@ -14,4 +14,20 @@
             (set-locale-environment "ENU")))
 ;           (set-locale-environment "CHS")))
 
+;; enable run with python... src code in org-mode
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '(
+   (sh . t)
+   (python . t)
+   (R . t)
+   (ruby . t)
+   (ditaa . t)
+   (dot . t)
+   (octave . t)
+   (sqlite . t)
+   (perl . t)
+   (C . t)
+   ))
+
 (provide 'init-my-org-mode)
