@@ -33,6 +33,10 @@
 ;;设置粘贴缓冲条目数量.用一个很大的kill ring(最多的记录个数). 这样防止我不小心删掉重要的东西
 (setq kill-ring-max 200)
 
+;;只打开一个emacs实例
+;; In windows you need change the owner of ~/.emacs.d/server directory
+;; Click R-mouse on ~/.emacs.d/server and select “Properties” (last item in menu). From Properties select the Tab “Security” and then select the button “Advanced”. Then select the Tab “Owner” and change the owner from Administrators (<your-pc-name>\Administrators) into <your-login-name> (<your-pc-name>\<your-login-name>. Now the server code will accept this directory as secure because you are the owner.
+(server-mode 1)
 
 ;; ????????????????????????????????
 
@@ -126,16 +130,6 @@
 ;;11 设置初始目录为rails项目目录
 (setq default-directory "/emacs")
 
-;;12 设定语言环境为utf-8
-(setq current-language-environment "UTF-8")
-(setq default-input-method "chinese-py")
-(setq locale-coding-system 'utf-8)
-(set-terminal-coding-system 'utf-8)
-(set-keyboard-coding-system 'utf-8)
-;(set-clipboard-coding-system 'utf-8)
-;(set-selection-coding-system 'utf-8)
-;(prefer-coding-system 'utf-8)
-
 ;;13 打开一个新的shell
 (defun newshell (name)
   (interactive "sBuffer's name: ")
@@ -157,61 +151,6 @@
 (run-with-idle-timer 0.5 nil 'w32-send-sys-command 61488)
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;;------------语言环境字符集设置(utf-8)-------------
-(defun qiang-font-existsp (font)
-  (if (null (x-list-fonts font))
-     nil t))
-(defvar font-list '("Microsoft Yahei" "宋体" "新宋体" "文泉驿等宽微米黑" "黑体" ))
-(require 'cl) ;; find-if is in common list package
-(find-if #'qiang-font-existsp font-list)
-(defun qiang-make-font-string (font-name font-size)
-  (if (and (stringp font-size) 
-           (equal ":" (string (elt font-size 0))))
-      (format "%s%s" font-name font-size)
-    (format "%s %s" font-name font-size)))
-(defun qiang-set-font (english-fonts
-                       english-font-size
-                       chinese-fonts
-                       &optional chinese-font-size)
-  "english-font-size could be set to \":pixelsize=18\" or a integer.
-If set/leave chinese-font-size to nil, it will follow english-font-size"
-  (require 'cl)                         ; for find if
-  (let ((en-font (qiang-make-font-string
-                  (find-if #'qiang-font-existsp english-fonts)
-                  english-font-size))
-        (zh-font (font-spec :family (find-if #'qiang-font-existsp chinese-fonts)
-                            :size chinese-font-size)))
-  
-    ;; Set the default English font
-    ;; 
-    ;; The following 2 method cannot make the font settig work in new frames.
-    ;; (set-default-font "Consolas:pixelsize=18")
-    ;; (add-to-list 'default-frame-alist '(font . "Consolas:pixelsize=18"))
-    ;; We have to use set-face-attribute
-    (message "Set English Font to %s" en-font)
-    (set-face-attribute
-     'default nil :font en-font)
-  
-    ;; Set Chinese font 
-    ;; Do not use 'unicode charset, it will cause the english font setting invalid
-    (message "Set Chinese Font to %s" zh-font)
-    (dolist (charset '(kana han symbol cjk-misc bopomofo))
-      (set-fontset-font (frame-parameter nil 'font)
-                        charset
-                        zh-font))))
-(qiang-set-font
- '("Consolas" "Arial" "Monaco" "DejaVu Sans Mono" "Monospace" "Courier New") ":pixelsize=15"
- '("Microsoft Yahei" "宋体" "新宋体" "文泉驿等宽微米黑" "黑体" ))
-;;Setting English Font
-;;(set-face-attribute  'default nil :font "Consolas 12")
-  
-;; Chinese Font
-;;(dolist (charset '(kana han symbol cjk-misc bopomofo)) (set-fontset-font (frame-parameter nil 'font) charset (font-spec :family "Microsoft Yahei" :size 12)))
-;;处理shell-mode乱码,好像没作用
- 
-;;------语言环境字符集设置结束------------
 
 ;;git-emacs
 ;;git clone https://github.com/tsgates/git-emacs.git

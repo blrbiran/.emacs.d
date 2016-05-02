@@ -3,7 +3,7 @@
 ;;----------------------------------------------------------------------------
 ;; Which functionality to enable (use t or nil for true and false)
 ;;----------------------------------------------------------------------------
-(setq *is-a-mac* (eq system-type 'darwin))
+(setq *is-a-mac* (eq system-type 'darwin) )
 (setq *win64* (eq system-type 'windows-nt) )
 (setq *cygwin* (eq system-type 'cygwin) )
 (setq *linux* (or (eq system-type 'gnu/linux) (eq system-type 'linux)) )
@@ -30,7 +30,8 @@
   (require 'init-my-module)
   (require 'speak-mode)  ;; my speak mode ; C-c C-a a to speak the buffer; C-c C-a e to interrupt
   (require 'init-mysettings)
-  
+  (require 'init-my-language)
+  (require 'init-my-font-setting)
   ;(require 'init-evil)
   
   ;; Windows configuration, assuming that cygwin is installed at "c:/cygwin"
