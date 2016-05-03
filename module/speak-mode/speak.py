@@ -5,6 +5,7 @@ import sys
 engine = pyttsx.init()
 engine.setProperty("rate", 140)
 
+
 def say(data):
     engine.say(data)
     engine.runAndWait()

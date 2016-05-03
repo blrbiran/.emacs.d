@@ -32,6 +32,7 @@
   (require 'init-mysettings)
   (require 'init-my-language)
   (require 'init-my-font-setting)
+  (require 'init-my-python)
   ;(require 'init-evil)
   
   ;; Windows configuration, assuming that cygwin is installed at "c:/cygwin"

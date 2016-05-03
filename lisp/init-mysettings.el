@@ -17,6 +17,9 @@
 ;;关闭开机画面
 (setq inhibit-startup-message t)
 
+;;TAB 转换为 Space
+(setq indent-tabs-mode nil)
+
 ;;显示括号匹配
 (show-paren-mode t)
 (setq show-paren-style 'parentheses)
