@@ -58,3 +58,4 @@ projectile.cache
 *.pdf
 bookmarks
 /server
+/request
