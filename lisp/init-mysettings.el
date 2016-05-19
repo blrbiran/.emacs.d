@@ -131,7 +131,7 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;;11 设置初始目录为rails项目目录
-(setq default-directory "/emacs")
+(setq default-directory "e:/emacs")
 
 ;;13 打开一个新的shell
 (defun newshell (name)

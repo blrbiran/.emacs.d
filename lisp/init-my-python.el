@@ -28,7 +28,7 @@
 ;; BASIC CUSTOMIZATION
 ;; --------------------------------------
 
-;(load-theme 'material t) ;; load material theme
+(load-theme 'material t) ;; load material theme
 
 ;; PYTHON CONFIGURATION
 ;; --------------------------------------

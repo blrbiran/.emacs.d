@@ -30,9 +30,10 @@
   (require 'init-my-module)
   (require 'speak-mode)  ;; my speak mode ; C-c C-a a to speak the buffer; C-c C-a e to interrupt
   (require 'init-mysettings)
+  (require 'init-my-python)
   (require 'init-my-language)
   (require 'init-my-font-setting)
-  (require 'init-my-python)
+  
   ;(require 'init-evil)
   
   ;; Windows configuration, assuming that cygwin is installed at "c:/cygwin"
