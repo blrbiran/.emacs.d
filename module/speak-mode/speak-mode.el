@@ -7,13 +7,13 @@
        (eq (process-status tts) 'run)))
 
 
-;;根据系统设定
+;;鏍规嵁绯荤粺璁惧畾
 (setq *is-a-mac* (eq system-type 'darwin) )
 (setq *win64* (eq system-type 'windows-nt) )
 (setq *cygwin* (eq system-type 'cygwin) )
 (setq *linux* (or (eq system-type 'gnu/linux) (eq system-type 'linux)) )
 (setq *unix* (or *linux* (eq system-type 'usg-unix-v) (eq system-type 'berkeley-unix)) )
-;;系统为windows以及cygwin时，设置为gbk，其他时候为utf-8
+;;绯荤粺涓簑indows浠ュ強cygwin鏃讹紝璁剧疆涓篻bk锛屽叾浠栨椂鍊欎负utf-8
 
 (defun tts-start ()
   (interactive)

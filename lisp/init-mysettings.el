@@ -150,10 +150,6 @@
 
 (global-set-key "\C-zk" 'open-key-info-file)
 
-;;15 启动0.5秒后自动最大化 （windows下）
-(run-with-idle-timer 0.5 nil 'w32-send-sys-command 61488)
-
-
 
 ;;git-emacs
 ;;git clone https://github.com/tsgates/git-emacs.git
@@ -176,6 +172,16 @@
 ;(setq display-time-use-mail-icon t);;时间栏旁边启用邮件设置
 (setq display-time-interval 30);;时间的变化频率，单位 s
 
+;;15 启动0.5秒后自动最大化 （windows下）
+;;根据系统设定
+(setq *is-a-mac* (eq system-type 'darwin) )
+(setq *win64* (eq system-type 'windows-nt) )
+(setq *cygwin* (eq system-type 'cygwin) )
+(setq *linux* (or (eq system-type 'gnu/linux) (eq system-type 'linux)) )
+(setq *unix* (or *linux* (eq system-type 'usg-unix-v) (eq system-type 'berkeley-unix)) )
+;;系统为windows以及cygwin时，设置为gbk，其他时候为utf-8
+(cond
+ (*win64* (run-with-idle-timer 0.5 nil 'w32-send-sys-command 61488)))
 
 (provide 'init-mysettings)
 
