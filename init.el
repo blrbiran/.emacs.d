@@ -25,6 +25,7 @@
   (require 'init-site-lisp) ;; Must come before elpa, as it may provide package.el ,before package from dir "site-lisp"
   (require 'init-my-org-mode)
   (require 'init-my-org-agenda)
+;  (require 'init-my-org-latex)
   (require 'init-color-theme)
 
   (require 'init-my-module)
@@ -70,3 +71,15 @@
   ;; It's dependent on init-site-lisp.el
   (if (file-exists-p "~/.custom.el") (load-file "~/.custom.el"))
 )
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(truncate-partial-width-windows nil))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

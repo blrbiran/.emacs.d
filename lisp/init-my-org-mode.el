@@ -2,6 +2,9 @@
 ;; show highlight while edit (#+begin_src .. #end_src)
 (setq org-src-fontify-natively t)
 
+;; set auto lines
+(add-hook 'org-mode-hook (lambda () (setq truncate-lines nil)))
+
 ;;set for calendar Date
 ;(add-hook 'org-mode-hook
 ;          (lambda ()
