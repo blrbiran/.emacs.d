@@ -1,4 +1,6 @@
-;; see http://joat-programmer.blogspot.de/2013/07/org-mode-version-8-and-pdf-export-with.html
+;; How to highlight source code see: http://joat-programmer.blogspot.de/2013/07/org-mode-version-8-and-pdf-export-with.html
+;; How to set options for minted package see: http://orgmode.org/worg/org-tutorials/org-latex-export.html
+;; Detail settings about minted package see: http://mirror.unl.edu/ctan/macros/latex/contrib/minted/minted.pdf
 ;;special settings for Org-Latex
 ;; Include the latex-exporter
 (require 'ox-latex)
