@@ -122,7 +122,12 @@
 
 ;;8 默认进入text-mode，而不是没有什么功能的fundamental-mode
 (setq default-major-mode 'text-mode)
-(add-hook 'text-mode-hook 'turn-on-auto-fill)
+;; 启动 auto-fill 超过字数换行
+;;(add-hook 'text-mode-hook 'turn-on-auto-fill)
+
+;; 不嫌烦的，每次M-x toggle-truncate-lines切换换行与不换行
+;; 一劳永逸的，M-x customize-option，输入truncate-partial-width-windows，将出来的设置页面中的参数改为off，然后保存(Save for future sessions)
+;; 另外说一句，M-x auto-fill-mode也是切换换行模式，不过这是要在文章内容里插入回车符号
 
 ;;9 显示行号
 (global-linum-mode t)
