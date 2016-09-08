@@ -135,8 +135,6 @@
 ;;10 改变 Emacs 固执的要你回答 yes 的行为。按 y 或空格键表示 yes，n 表示 no。
 (fset 'yes-or-no-p 'y-or-n-p)
 
-;;11 设置初始目录为rails项目目录
-(setq default-directory "e:/emacs")
 
 ;;13 打开一个新的shell
 (defun newshell (name)
@@ -187,6 +185,13 @@
 ;;系统为windows以及cygwin时，设置为gbk，其他时候为utf-8
 (cond
  (*win64* (run-with-idle-timer 0.5 nil 'w32-send-sys-command 61488)))
+
+;; 设置初始目录为
+(cond
+ (*win64* (setq default-directory "e:/emacs"))
+ (*is-a-mac* (setq default-directory "~/"))
+ (*linux* (setq default-directory "~/")))
+ 
 
 (provide 'init-mysettings)
 
