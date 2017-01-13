@@ -17,4 +17,7 @@
 ;; (setq org-latex-pdf-process
 ;;       '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
 
+;; export with latex part
+(setq org-export-with-LaTeX-fragments t)
+
 (provide 'init-my-org-latex)
