@@ -1,8 +1,10 @@
 ;; 将~/org/todo.org替换为todo.org实际路径
-;;(setq org-agenda-files (list "~/agenda/todo.org"))
-(setq org-agenda-files (list "~/agenda/todo.org"
-                             "~/agenda/done.org"
-							 "~/agenda/project.org"))
+;;(setq org-agenda-files (list "~/org/todo.org"))
+(setq org-agenda-files (list "~/org/inbox.org"
+                             "~/org/task.org"
+                             "~/org/note.org"
+                             "~/org/project.org"
+                             "~/org/done.org"))
 
 ;; 设置C-c C-w可以切换的文件和深度
 (setq org-refile-targets (quote ((nil :maxlevel . 1)
@@ -22,6 +24,29 @@
 ;  (not (member (nth 2 (org-heading-components)) org-done-keywords)))
 
 ;(setq org-refile-target-verify-function 'bh/verify-refile-target)
+
+(setq org-directory "~/agenda/")
+(setq org-default-notes-file (concat org-directory "/note.org"))
+
+(define-key global-map "\C-c\C-c" 'org-capture)
+
+;; (setq org-capture-templates
+;; 	  '(("New" ?n "* %? %t \n %i\n %a" "~/agenda/inbox.org" )
+;; 		("Task" ?t "** TODO %?\n %i\n %a" "~/agenda/task.org" "Tasks")
+;; 		("Calendar" ?c "** TODO %?\n %i\n %a" "~/agenda/task.org" "Tasks")
+;; 		("Idea" ?i "** %?\n %i\n %a" "~/agenda/task.org" "Ideas")
+;; 		("Note" ?r "* %?\n %i\n %a" "~/agenda/note.org" )
+;;		("Project" ?p "** %?\n %i\n %a" "~/agenda/project.org" %g) ))
+
+(setq org-capture-templates
+	'(("t" "Todo" entry (file+headline "~/agenda/task.org" "Task")
+		"* TODO %?\n   SCHEDULED: %t\n  %i\n  %a")
+	("n" "New" entry (file+headline "~/agenda/inbox.org" "Inbox")
+		"* TODO %?\n   SCHEDULED: %t\n  %i\n  %a")
+	("r" "Note" entry (file+headline "~/agenda/note.org" "Note")
+		"* %?\n  %i\n  %a")
+	("p" "Project" entry (file+datetree "~/agenda/project.org")
+		"* %?\n   SCHEDULED: %U\n  %i\n  %a")))
 
 ;; 绑定 C-c a 键打开日程表
 (global-set-key "\C-ca" 'org-agenda)
