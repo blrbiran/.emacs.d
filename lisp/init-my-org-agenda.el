@@ -40,13 +40,13 @@
 
 (setq org-capture-templates
 	'(("t" "Todo" entry (file+headline "~/org/task.org" "Task")
-		"* TODO %?\n   SCHEDULED: %t\n  %i\n  %a")
+		"* TODO %?\n  SCHEDULED: %t\n  %i\n  %a")
 	("n" "New" entry (file+headline "~/org/inbox.org" "Inbox")
-		"* TODO %?\n   SCHEDULED: %t\n  %i\n  %a")
+		"* TODO %?\n  SCHEDULED: %t\n  %i\n  %a")
 	("r" "Note" entry (file+headline "~/org/note.org" "Note")
 		"* %?\n  %i\n  %a")
 	("p" "Project" entry (file+datetree "~/org/project.org")
-		"* %?\n   SCHEDULED: %U\n  %i\n  %a")))
+		"* %?\n  SCHEDULED: %U\n  %i\n  %a")))
 
 ;; 绑定 C-c a 键打开日程表
 (global-set-key "\C-ca" 'org-agenda)
