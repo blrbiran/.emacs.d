@@ -25,27 +25,27 @@
 
 ;(setq org-refile-target-verify-function 'bh/verify-refile-target)
 
-(setq org-directory "~/agenda/")
+(setq org-directory "~/org/")
 (setq org-default-notes-file (concat org-directory "/note.org"))
 
 (define-key global-map "\C-c\C-c" 'org-capture)
 
 ;; (setq org-capture-templates
-;; 	  '(("New" ?n "* %? %t \n %i\n %a" "~/agenda/inbox.org" )
-;; 		("Task" ?t "** TODO %?\n %i\n %a" "~/agenda/task.org" "Tasks")
-;; 		("Calendar" ?c "** TODO %?\n %i\n %a" "~/agenda/task.org" "Tasks")
-;; 		("Idea" ?i "** %?\n %i\n %a" "~/agenda/task.org" "Ideas")
-;; 		("Note" ?r "* %?\n %i\n %a" "~/agenda/note.org" )
-;;		("Project" ?p "** %?\n %i\n %a" "~/agenda/project.org" %g) ))
+;; 	  '(("New" ?n "* %? %t \n %i\n %a" "~/org/inbox.org" )
+;; 		("Task" ?t "** TODO %?\n %i\n %a" "~/org/task.org" "Tasks")
+;; 		("Calendar" ?c "** TODO %?\n %i\n %a" "~/org/task.org" "Tasks")
+;; 		("Idea" ?i "** %?\n %i\n %a" "~/org/task.org" "Ideas")
+;; 		("Note" ?r "* %?\n %i\n %a" "~/org/note.org" )
+;;		("Project" ?p "** %?\n %i\n %a" "~/org/project.org" %g) ))
 
 (setq org-capture-templates
-	'(("t" "Todo" entry (file+headline "~/agenda/task.org" "Task")
+	'(("t" "Todo" entry (file+headline "~/org/task.org" "Task")
 		"* TODO %?\n   SCHEDULED: %t\n  %i\n  %a")
-	("n" "New" entry (file+headline "~/agenda/inbox.org" "Inbox")
+	("n" "New" entry (file+headline "~/org/inbox.org" "Inbox")
 		"* TODO %?\n   SCHEDULED: %t\n  %i\n  %a")
-	("r" "Note" entry (file+headline "~/agenda/note.org" "Note")
+	("r" "Note" entry (file+headline "~/org/note.org" "Note")
 		"* %?\n  %i\n  %a")
-	("p" "Project" entry (file+datetree "~/agenda/project.org")
+	("p" "Project" entry (file+datetree "~/org/project.org")
 		"* %?\n   SCHEDULED: %U\n  %i\n  %a")))
 
 ;; 绑定 C-c a 键打开日程表
