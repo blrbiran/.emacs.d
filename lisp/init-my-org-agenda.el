@@ -28,7 +28,7 @@
 (setq org-directory "~/org/")
 (setq org-default-notes-file (concat org-directory "/note.org"))
 
-(define-key global-map "\C-c\C-c" 'org-capture)
+(define-key global-map "\C-cc" 'org-capture)
 
 ;; (setq org-capture-templates
 ;; 	  '(("New" ?n "* %? %t \n %i\n %a" "~/org/inbox.org" )

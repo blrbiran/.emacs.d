@@ -7,7 +7,7 @@
 
 ;;use melpa
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
 ;;设置有用的个人信息,这在很多地方有用。
