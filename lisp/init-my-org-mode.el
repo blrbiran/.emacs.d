@@ -11,6 +11,8 @@
 ;            (set (make-local-variable 'system-time-locale) "ENU")))
 ;            (set (make-local-variable 'system-time-locale) "CHS")))
 
+;; if using Mac os X, need set "export LANG=en_US.UTF-8" in ~/.zshrc or ~/.bash_profile
+
 ;; 设置语言为英语
 (add-hook 'org-mode-hook
           (lambda ()
