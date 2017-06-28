@@ -1,4 +1,12 @@
+#+TITLE: Emacs
+#+AUTHOR: <Brian>
+#+EMAIL: <blrbiran@yeah.net>
+#+DATE: <2016-12-02 13:05:15>
+#+TODO: WAITING(w) DOING(d) TODO(T!) | DONE(D!) CANCELED(C@/!)
+#+OPTIONS: ^:nil
 
+#+LaTeX_HEADER: \usepackage{xeCJK}
+#+LaTeX_HEADER: \setCJKmainfont{SimSun}
 ;帮助文字自动进入Outline Mode，可以用C-c C-a命令来展开所有分类，用C-c C-t命令来收起所有分类（只显示标题），光标在某一个分类上时，可以用C-c C-e命令来查看本分类内容。详细命令可参考后面附文中的Outline Mode部分。（~/emacskeys.txt文件内容附在本文最后）
 ;Org-Mode 只需要使用 Tab键即可打开目录
 
@@ -155,16 +163,72 @@ C-c C-c ：隐藏当前章节的文本
 C-c C-e ：显示光标所在位置内容 
 C-c C-l ：隐藏光标所在章节的文本和子章节的文本 
 C-c C-k ：显示所有子章节的标题 
-* Org Mode
+
+* Org-Mode
+   - State "DONE"       from ""           [2016-12-21 Wed 10:04]
+参考：
+1. [[http://www.fuzihao.org/blog/2015/02/19/org-mode%E6%95%99%E7%A8%8B/][org-mode入门教程]]
+2. [[http://orgmode.org/orgguide.pdf][org-mode官方教程]]
+
+** Chapter
+Org-Mode用* 标识章节，一个* 代表一级标题，两个* 代表两级标题，以此类推
+(*后面有空格)。
+
+S+Tab 展开、折叠所有章节
+Tab 对光标所在章节进行展开、折叠
+M+left/right 升级/降级标题
+
+** List
+列表是文本中一个比较常用的元素，可以列出各种待完成的事项等。Org-Mode提
+供了一种很独特的功能，可以加入Checkbok（实际就是加入一对中间有空格的方
+括号[ ]）标记任务的完成状况，而且如果一个总任务有多个子任务，还可以根
+据子任务的完成情况计算总进度（只需要在总任务后面添加一对方括号，里面加
+上%或/ 如[%],[/]）。列表分为有序和无序两种，有序列表以1.或 1)开头，无
+序列表以+或-开头 后面，同样，后面要跟一个空格。
+
+使用 C-c C-c 对表中项目进行完成与未完成标注，输入一个无序列表：
+
++ [-] treeroot [1/2]
+  + [-] branch1
+  + [X] branch2
+
+在输入的时候，我们按M-RET（Alt+回车）可以自动输入同级的条目，按
+M+left/right调整层级。同理，我们还可以输入一个有序列表：
+
+1) [-] mission [50%]
+   1) [-] sub1
+   2) [X] sub2
+
+按 M-S-RET 可以输入一个带Checkbox的列表项，而在总任务后面可以输入一
+个[%]或者[/]则能自动计算总任务进度。
+
+常用快捷键：
+M-RET 插入同级列表项
+M-S-RET 插入有 checkbox的同级列表项
+C-c C-c 改变 checkbox状态
+M-left/right 改变列表项层级关系
+M-up/dowm 上下移动列表项
+
+** Footnote
+Details see: [[http://orgmode.org/manual/Footnotes.html]]
+
+用[fn:name1]的方式插入脚注，而在最下面插入　
+
+[fn:name1]本文参考自http://orgmode.org/orgguide.pdf
+这个标签是可以点击的。
+
+可以使用 C-c C-c 跳转与脚注和引用之间。
+
 ** Table
-*** 编辑整体区域
+*** generate
+**** 编辑整体区域
 | C-c 竖线 | 创建或者转化成表格             |
 | C-c C-c  | 调整表格，不移动光标           |
 | TAB      | 移动到下一区域，必要时新建一行 |
 | S-TAB    | 移动到上一区域                 |
 | RET      | 移动到下一行，必要时新建一行   |
 
-*** 编辑行和列
+**** 编辑行和列
 | M-LEFT/RIGHT   | 移动列                           |
 | M-UP/DOWN      | 移动行                           |
 | M-S-LEFT/RIGHT | 删除/插入列                      |
@@ -173,12 +237,13 @@ C-c C-k ：显示所有子章节的标题
 | C-c RET        | 添加水平分割线并跳到下一行       |
 | C-c ^          | 根据当前列排序，可以选择排序方式 |
 
-*** 计算:
-C-Num C-c =     计算Num行 公式中$1代表第一列，以此类推
-光标在TBLFM行中 C-c C-c  即可应用公式到所有行或所有列
-@Num表示Num行，$Num表示Num列
-公式与公式之间用 :: 隔开
-（例如:#+TBLFM: $6=vsum($2..$5)::@5$2=vsum(@2..@4)）
+*** calculate
+C-Num C-c =     计算Num行 公式中$1代表第一列，以此类推。
+光标在TBLFM行中 C-c C-c  即可应用公式到所有行或所有列。
+@Num表示Num行，$Num表示Num列。
+公式与公式之间用 :: 隔开（#+TBLFM:$6=vsum($2..$5)::@5$2=vsum(@2..@4)）
+我们在第五列任选一个位置，输入=$3+$4，然后按C-u C-c C-c ，Org-Mode便能
+自动为我们计算所有三列加四列的和，并放到第五列。
 
 可用公式:
 | vcount（范围）  | 数据的数目             |
@@ -193,6 +258,217 @@ C-Num C-c =     计算Num行 公式中$1代表第一列，以此类推
 | vpsdev（范围）  | 数据的标准偏差（N）的  |
 | vvar（范围）    | 数据分布               |
 | vmedian（范围） | 中位数的数据（中间值） |
+
+** Link
+链接用于链接一些资源地址，如图片、文件、URL等。
+链接的格式是：
+#+BEGIN_EXAMPLE emacs
+[[链接地址][链接内容]]
+
+如：
+[[http://orgmode.org/orgguide.pdf][grgguid.pdf]]]
+[[file:/home/maple/图片/test.jpg][a picture]]
+
+如果去掉标签，则能直接显示图片：
+[[file:/home/maple/图片/test.jpg]]
+#+END_EXAMPLE
+
+直接显示的图片在Emacs里默认不显示，需按C-c C-x C-v才能显示，在输出成其
+他格式（html、pdf……）后也能看到。
+　　
+常用快捷键：
+C-c C-x C-v 直接预览图片。
+
+** Todo-list
+在文档任意地方加入以下内容
+#+TODO:WAITING(w) DOING(d) TODO(T!) | DONE(D!) CANCELED(C@/!)
+并按 C-c C-c应用新标签，以此扩充Todo list的标签种类
+
+其他内容类似 List 部分
+
+一些常用操作如下：
+C-c C-t 变换TODO的状态
+C-c / t以树的形式展示所有的 TODO
+C-c C-c 改变Checkbox状态
+C-c, 设置优先级（方括号里的ABC）
+M-S-RET 插入同级TODO标签
+
+** Tags
+在org-mode中，可以给每一章节添加一个标签，我们可以通过树的结构来查看所
+有带标签的章节。在每一节中，子标题的标签会继承父标题标签。
+
+#+BEGIN_EXAMPLE text
+输入：
+\*** 章标题 	:work:learn:
+\**** 节标题1   :fly:plane:
+\**** 节标题2 	:car:run:
+#+END_EXAMPLE
+
+#+BEGIN_EXAMPLE text
+同时可在org文件的开始处写下标签，如：
+#+TAGS: { ACADEMIC(a) ENGLISH(e) SCHOOL(s) LEARNING(l) OUTPUT(p) OTHER(o) }
+#+END_EXAMPLE
+
+一些常用命令如下：
+C-c C-q 为标题添加标签
+C-c / m 生成带标签的树
+
+** Date & Time
+输入C-c . 会出现一个日历，我们点选相应的时间即可插入时间标签
+
+时间前可以加DEADLINE:和SCHEDULED:表示时间的类型如：
+#+BEGIN_EXAMPLE emacs
+DEADLINE:<2016-05-01 Sun>
+#+END_EXAMPLE
+
+** #+BEGIN_SRC..#+END_SRC
+<s tab 和 <e tab 为 #+BEGIN_SRC..#END_SRC
+和 #+BEGIN_EXAMPLE..#END_EXAMPLE 的快捷键
+
+org-mode除了可以直接插入源代码之外，可以直接求出运行结果，这也是其强大
+之处，在使用之前，需要在.emacs配置文件中设置加载的运行语言：
+#+BEGIN_SRC emacs-lisp
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '(
+   (sh . t)
+   (python . t)
+   (R . t)
+   (ruby . t)
+   (ditaa . t)
+   (dot . t)
+   (octave . t)
+   (sqlite . t)
+   (perl . t)
+   (C . t)
+   ))
+#+END_SRC
+
+之后使用 C-c C-c 对当前代码块求值
+
+以下为对Python代码求值(强其中的"\"去除)：
+#+BEGIN_SRC emacs-lisp
+\#+BEGIN_SRC python :results output
+a = 1+1
+print a
+\#+END_SRC
+
+\#+RESULTS:
+: 2
+
+#+END_SRC
+
+以下为对C代码求值(注意是includes而不是include)：
+#+BEGIN_SRC emacs-lisp
+\#+BEGIN_SRC C++ :includes <stdio.h>
+int a = 1;
+int b = 1;
+printf("a + b = %d",a+b);
+\#+END_SRC
+
+\#+RESULTS:
+: a + b = 2
+
+#+END_SRC
+
+** Output
+#+BEGIN_EXAMPLE
+设置标题和目录：
+#+TITLE: This is the title of the document
+#+OPTIONS: toc:2 (only to two levels in TOC)
+#+OPTIONS: toc:nil (no TOC at all)
+
+添加引用：
+#+BEGIN_QUOTE
+Everything should be made as simple as possible,
+but not any simpler -- Albert Einstein
+#+END_QUOTE
+
+设置居中：
+#+BEGIN_CENTER
+    Everything should be made as simple as possible,but not any simpler
+#+END_CENTER
+
+设置样例（在这里面的内容将会被直接输出，不会被转义）
+\#+BEGIN_EXAMPLE
+这里面的字符不会被转义
+\#+END_EXAMPLE
+
+注释，这些内容不会被导出
+注释的用法#  this is comment
+#+BEGIN_COMMENT
+这里的注释不会被导出
+#+END_COMMENT
+
+Latex使用，Org-Mode能支持直接输入LaTeX，在导出后LaTeX能被正确解释：
+#+END_EXAMPLE
+
+Org-Mode中使用 C-c C-e 可将文档输出为html、latex、pdf等文件
+Windows中生成中文pdf时有点问题，代替方案为安装CTeX(安装有可能覆盖系统
+中的PATH文件，注意提前备份)，通过Org-Mode产生latex文件，在文件头中添加
+如下两行：
+\usepackage{xeCJK}
+\setCJKmainfont{SimSun}
+
+再使用XeLaTex产生pdf文档
+
+** Agenda
+可用目录结构：
+| org-mode-configuration | 主要是对todo.org整个文件的一些配置。                                                                                |
+| Inbox                  | GTD中Inbox的概念，快速输入临时事件或突然的想法，释放头脑内存。                                                      |
+| Tasks                  | 相当于GTD中的Todo-list，即那些一步就能完成的零散事件，如写这篇文章。                                                |
+| Projects               | 各种需要多个步骤完成的项目，每个项目在里面是二级标题(**)，由各种三级TODO标题(***)组成。当然也可能对项目进行再细分。 |
+| Routines               | 一些每天都要进行的习惯。使用Org-mode可以很好地进行重复。                                                            |
+| Remind                 | 需要提醒的事情，比如某个时间点上课。                                                                                |
+| Reading                | 正在看的书。                                                                                                        |
+| Weekly-Review          | 每周要结束时进行Review，其中有一些代码段，用于进行当周的时间统计。                                                  |
+
+参考：
+[[http://blog.csdn.net/dc_726/article/details/8623879][用Org-mode实践《奇特的一生》]]
+
+** GTD
+参考：
+1. [[http://blog.csdn.net/dc_726/article/details/8623879][用Org-mode实践《奇特的一生》]]
+2. [[http://www.cnblogs.com/holbrook/archive/2012/04/17/2454619.html][Emacs学习笔记(11):用Org-mode实现GTD]]
+3. [[http://blog.csdn.net/jiluben/article/details/39505203][emacs之org-mode的转接（Refiling） ***]]
+
+C-c C-s 插入SCHEDULED
+C-c C-d 插入DEADLINE
+
+C-c C-t 添加/修改状态
+C-c C-q 添加标签
+
+C-c C-w 迁移标题
+
+C-c a t 查看未完成任务
+C-c a a 查看日程表
+
+** Problem like("_")
+如何设置让 Org Mode 在默认情况下，不转义 _ 字符呢？
+单个 org 文件的解决办法
+
+你可以在一个 org 文件的开头，用下面的设置来关闭这个功能。
+#+BEGIN_EXAMPLE emacs-lisp
+#+OPTIONS: ^:nil
+#+END_EXAMPLE
+如果你需要更方便的设置，可以把上面这个改为
+#+BEGIN_EXAMPLE emacs-lisp
+#+OPTIONS: ^:{}
+#+END_EXAMPLE
+这样，当你写
+a_{b}
+时，_ 后被 {} 括起来的内容就会被转义，而写 a_b 时，就按普通的方式来显示。
+org sites 的解决办法
+
+如果你是用 org sites 来写笔记，想让某个 site 的所有 org 文件不转义 _ 字符，则也可以直接在 org sites 配置文件里，配置下面这么一句，一了百了：
+(setq org-export-with-sub-superscripts nil)
+也可以在 org sites 里设置这个属性，只作用于某一个 site：
+:sub-superscript nil
+如果需要像上面一样，采用相对智能的 {} 方式，可以设置成
+:sub-superscript {}
+或是直接用 elisp 来设置全局的属性：
+(setq org-export-with-sub-superscripts '{})
+这样就会用 {} 来转义了。
 
 * Abbrev Mode 
 C-x a l ：将当前光标之前的单词添加为当前Mode的Abbrev 
@@ -219,3 +495,8 @@ C-c M-r ：根据当前输入内容在历史输入中反向搜索
 C-c M-s ：根据当前输入内容在历史输入中正向搜索 
 C-c C-c ：中断任务（相当于shell中的Ctrl-C） 
 C-c C-d ：发送eof字符 
+
+* Other Emacs Tips
+** Char Set
+C-u C-x = 查看文字所使用的字符集
+
