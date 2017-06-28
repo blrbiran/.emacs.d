@@ -17,6 +17,11 @@
             (set-locale-environment "ENU")))
 ;           (set-locale-environment "CHS")))
 
+(add-hook 'org-mode-hook
+          (lambda ()
+            (setq system-time-locale "C")))
+
+
 ;; enable run with python... src code in org-mode
 (org-babel-do-load-languages
  'org-babel-load-languages
