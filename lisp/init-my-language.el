@@ -16,7 +16,7 @@
 (cond
  (*win64* (progn (prefer-coding-system 'gbk) (setq locale-coding-system 'gbk)))
  (*cygwin* (progn (prefer-coding-system 'gbk) (setq locale-coding-system 'gbk)))
+ (*is-a-mac* (progn (prefer-coding-system 'utf-8) (setq locale-coding-system 'utf-8)))
  (t (progn (prefer-coding-system 'utf-8) (setq locale-coding-system 'utf-8))))
-
 
 (provide 'init-my-language)

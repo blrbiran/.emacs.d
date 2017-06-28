@@ -14,12 +14,13 @@
 ;; 设置语言为英语
 (add-hook 'org-mode-hook
           (lambda ()
-            (set-locale-environment "ENU")))
-;           (set-locale-environment "CHS")))
+            (setq system-time-locale "C")))
 
 (add-hook 'org-mode-hook
           (lambda ()
-            (setq system-time-locale "C")))
+            (set-locale-environment "ENU")))
+;           (set-locale-environment "CHS")))
+
 
 
 ;; enable run with python... src code in org-mode
