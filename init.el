@@ -23,6 +23,7 @@
 ;; Which means on every .el and .elc file loaded during start up, it has to runs those regexps against the filename.
 (let ((file-name-handler-alist nil))
   (require 'init-site-lisp) ;; Must come before elpa, as it may provide package.el ,before package from dir "site-lisp"
+
   (require 'init-my-org-mode)
   (require 'init-my-org-agenda)
 ;  (require 'init-my-org-latex)
@@ -30,11 +31,14 @@
 
   (require 'init-my-module)
   (require 'speak-mode)  ;; my speak mode ; C-c C-a a to speak the buffer; C-c C-a e to interrupt
+  
   (require 'init-mysettings)
+  (require 'init-my-plugin)
 ;  (require 'init-my-python)
   (require 'init-my-language)
   (require 'init-my-font-setting)
   (require 'init-my-go)
+;  (require 'init-md-mode)
   
   ;(require 'init-evil)
   
