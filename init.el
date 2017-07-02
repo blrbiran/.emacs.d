@@ -34,6 +34,7 @@
 ;  (require 'init-my-python)
   (require 'init-my-language)
   (require 'init-my-font-setting)
+  (require 'init-my-go)
   
   ;(require 'init-evil)
   
