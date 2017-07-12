@@ -500,3 +500,14 @@ C-c C-d ：发送eof字符
 ** Char Set
 C-u C-x = 查看文字所使用的字符集
 
+** Short key binding
+当在buffer里按下Tab键时是什么情况？插入一个tab字符？indent？如果是indent又是如何indent的呢？想要更改indent的宽度该怎么办呢？下面以XHTML这个Major Mode为例，看看emacs是怎样处理的。
+
+用C-h c查看Tab键绑定到了indent-for-tab-command命令上
+用C-h f查看indent-for-tab-command函数的描述，发现其依赖一个变量tab-always-indent来动作
+用C-h v查看tab-always-indent变量的描述：如果其值为t，indent当前行；如果其值为nil，当光标在left margin(当前行的indentation里)时，indent当前行，否则插入一个tab字符。当前值为t。
+怎样indent当前行？由变量indent-line-function决定，其值是实现indent的函数，用C-h v查看其值为sgml-indent-line
+不想去看sgml-indent-line是怎么indent的，因为有些indent的算法是比较复杂的，只要知道那些变量可以控制indent的效果就可以了
+用C-h m查看当前Mode的描述：XHTML Mode基于SGML mode，用C-h v html-SPC和C-h v sgml-SPC来查看可用变量
+发现sgml-basic-offset控制着indent的宽度，不过当前值为2，正合我意，否则之间就可以在该变量描述的那个buffer里用customize对该值进行修改
+
