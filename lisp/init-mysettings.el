@@ -87,6 +87,9 @@
 ;; control how emacs explain TAB.
 (setq-default tab-width 4)
 
+;;让emacs显示tab,空格，换行符等
+(global-set-key [f11] 'whitespace-mode)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; check http://kidneyball.iteye.com/blog/1014537
 ;;1 更顺手的M-x（可以用C-x C-m或C-c C-m来触发）
