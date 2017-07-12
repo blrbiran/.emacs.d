@@ -88,7 +88,7 @@
 (setq-default tab-width 4)
 
 ;;让emacs显示tab,空格，换行符等
-(global-set-key [f11] 'whitespace-mode)
+(global-set-key [f12] 'whitespace-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; check http://kidneyball.iteye.com/blog/1014537
