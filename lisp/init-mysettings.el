@@ -79,6 +79,13 @@
 ;; 设置光标为方块
 ;;(setq-default cursor-type 'box)
 
+;; tab and space
+;; when true, emacs use mixture of tab and space to achieve offset
+(setq-default indent-tabs-mode nil)
+;; control length used to offset.
+(setq-default c-basic-offset 4)
+;; control how emacs explain TAB.
+(setq-default tab-width 4)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; check http://kidneyball.iteye.com/blog/1014537
