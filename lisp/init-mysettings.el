@@ -87,8 +87,12 @@
 ;; control how emacs explain TAB.
 (setq-default tab-width 4)
 
-;;让emacs显示tab,空格，换行符等
+;; 让emacs显示tab,空格，换行符等
 (global-set-key [f12] 'whitespace-mode)
+
+;; toggle cua-mode
+(global-set-key [f9] 'cua-mode)
+;; using C-RET for block selection mode
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; check http://kidneyball.iteye.com/blog/1014537
