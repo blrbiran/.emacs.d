@@ -290,7 +290,7 @@ C-c C-x C-v 直接预览图片。
 C-c C-t 变换TODO的状态
 C-c / t以树的形式展示所有的 TODO
 C-c C-c 改变Checkbox状态
-C-c, 设置优先级（方括号里的ABC）
+S-< / S-> 设置优先级（方括号里的ABC）
 M-S-RET 插入同级TODO标签
 
 ** Tags
