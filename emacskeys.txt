@@ -515,3 +515,13 @@ C-c C-h查看C-c对应的快捷键
 用C-h m查看当前Mode的描述：XHTML Mode基于SGML mode，用C-h v html-SPC和C-h v sgml-SPC来查看可用变量
 发现sgml-basic-offset控制着indent的宽度，不过当前值为2，正合我意，否则之间就可以在该变量描述的那个buffer里用customize对该值进行修改
 
+** byte compile
+(byte-compile-file "foo.el")
+
+;; compile all the files .elc files which has a corresponding newer .el file 
+(byte-recompile-directory ".")
+
+;; like before, but in this case force the byte-compilation of an .el file when the corresponding
+;; .elc file doesn't exist
+
+(byte-recompile-directory "." 0)
