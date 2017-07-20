@@ -38,6 +38,7 @@
   (require 'init-my-language)
   (require 'init-my-font-setting)
   (require 'init-my-go)
+  (require 'init-my-c)
 ;  (require 'init-md-mode)
   
   ;(require 'init-evil)
