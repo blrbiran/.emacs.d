@@ -589,3 +589,64 @@ cua-mode下可以用以下命令进行列操作：
 [M-u]: 把rect中的内容全部转换为大写
 [M-|]: 对rect执行一个shell命令
 
+** Matching tags and properties
+reference: [[http://orgmode.org/manual/Matching-tags-and-properties.html]]
+
+If headlines in the agenda files are marked with tags (see Tags), or have properties (see Properties and columns), you can select headlines based on this metadata and collect them into an agenda buffer. The match syntax described here also applies when creating sparse trees with C-c / m.
+
+C-c a m     (org-tags-view)
+Produce a list of all headlines that match a given set of tags. The command prompts for a selection criterion, which is a boolean logic expression with tags, like ‘+work+urgent-withboss’ or ‘work|home’ (see Tags). If you often need a specific search, define a custom command for it (see Agenda dispatcher). 
+C-c a M     (org-tags-view)
+Like C-c a m, but only select headlines that are also TODO items in a not-DONE state and force checking subitems (see variable org-tags-match-list-sublevels). To exclude scheduled/deadline items, see the variable org-agenda-tags-todo-honor-ignore-options. Matching specific TODO keywords together with a tags match is also possible, see Tag searches.
+The commands available in the tags list are described in Agenda commands.
+
+Match syntax
+
+A search string can use Boolean operators ‘&’ for AND and ‘|’ for OR. ‘&’ binds more strongly than ‘|’. Parentheses are not implemented. Each element in the search is either a tag, a regular expression matching tags, or an expression like PROPERTY OPERATOR VALUE with a comparison operator, accessing a property value. Each element may be preceded by ‘-’, to select against it, and ‘+’ is syntactic sugar for positive selection. The AND operator ‘&’ is optional when ‘+’ or ‘-’ is present. Here are some examples, using only tags.
+
+‘work’
+Select headlines tagged ‘:work:’. 
+‘work&boss’
+Select headlines tagged ‘:work:’ and ‘:boss:’. 
+‘+work-boss’
+Select headlines tagged ‘:work:’, but discard those also tagged ‘:boss:’. 
+‘work|laptop’
+Selects lines tagged ‘:work:’ or ‘:laptop:’. 
+‘work|laptop+night’
+Like before, but require the ‘:laptop:’ lines to be tagged also ‘:night:’.
+Instead of a tag, you may also specify a regular expression enclosed in curly braces. For example, ‘work+{^boss.*}’ matches headlines that contain the tag ‘:work:’ and any tag starting with ‘boss’.
+
+Group tags (see Tag hierarchy) are expanded as regular expressions. E.g., if ‘:work:’ is a group tag for the group ‘:work:lab:conf:’, then searching for ‘work’ will search for ‘{\(?:work\|lab\|conf\)}’ and searching for ‘-work’ will search for all headlines but those with one of the tags in the group (i.e., ‘-{\(?:work\|lab\|conf\)}’).
+
+You may also test for properties (see Properties and columns) at the same time as matching tags. The properties may be real properties, or special properties that represent other metadata (see Special properties). For example, the “property” TODO represents the TODO keyword of the entry and the “property” PRIORITY represents the PRIORITY keyword of the entry.
+
+In addition to the properties mentioned above, LEVEL represents the level of an entry. So a search ‘+LEVEL=3+boss-TODO="DONE"’ lists all level three headlines that have the tag ‘boss’ and are not marked with the TODO keyword DONE. In buffers with org-odd-levels-only set, ‘LEVEL’ does not count the number of stars, but ‘LEVEL=2’ will correspond to 3 stars etc.
+
+Here are more examples:
+
+‘work+TODO="WAITING"’
+Select ‘:work:’-tagged TODO lines with the specific TODO keyword ‘WAITING’. 
+‘work+TODO="WAITING"|home+TODO="WAITING"’
+Waiting tasks both at work and at home.
+When matching properties, a number of different operators can be used to test the value of a property. Here is a complex example:
+
+     +work-boss+PRIORITY="A"+Coffee="unlimited"+Effort<2         \
+              +With={Sarah\|Denny}+SCHEDULED>="<2008-10-11>"
+The type of comparison will depend on how the comparison value is written:
+
+If the comparison value is a plain number, a numerical comparison is done, and the allowed operators are ‘<’, ‘=’, ‘>’, ‘<=’, ‘>=’, and ‘<>’.
+If the comparison value is enclosed in double-quotes, a string comparison is done, and the same operators are allowed.
+If the comparison value is enclosed in double-quotes and angular brackets (like ‘DEADLINE<="<2008-12-24 18:30>"’), both values are assumed to be date/time specifications in the standard Org way, and the comparison will be done accordingly. Special values that will be recognized are "<now>" for now (including time), and "<today>", and "<tomorrow>" for these days at 00:00 hours, i.e., without a time specification. Also strings like "<+5d>" or "<-2m>" with units d, w, m, and y for day, week, month, and year, respectively, can be used.
+If the comparison value is enclosed in curly braces, a regexp match is performed, with ‘=’ meaning that the regexp matches the property value, and ‘<>’ meaning that it does not match.
+So the search string in the example finds entries tagged ‘:work:’ but not ‘:boss:’, which also have a priority value ‘A’, a ‘:Coffee:’ property with the value ‘unlimited’, an ‘Effort’ property that is numerically smaller than 2, a ‘:With:’ property that is matched by the regular expression ‘Sarah\|Denny’, and that are scheduled on or after October 11, 2008.
+
+You can configure Org mode to use property inheritance during a search, but beware that this can slow down searches considerably. See Property inheritance, for details.
+
+For backward compatibility, and also for typing speed, there is also a different way to test TODO states in a search. For this, terminate the tags/property part of the search string (which may include several terms connected with ‘|’) with a ‘/’ and then specify a Boolean expression just for TODO keywords. The syntax is then similar to that for tags, but should be applied with care: for example, a positive selection on several TODO keywords cannot meaningfully be combined with boolean AND. However, negative selection combined with AND can be meaningful. To make sure that only lines are checked that actually have any TODO keyword (resulting in a speed-up), use C-c a M, or equivalently start the TODO part after the slash with ‘!’. Using C-c a M or ‘/!’ will not match TODO keywords in a DONE state. Examples:
+
+‘work/WAITING’
+Same as ‘work+TODO="WAITING"’ 
+‘work/!-WAITING-NEXT’
+Select ‘:work:’-tagged TODO lines that are neither ‘WAITING’ nor ‘NEXT’ 
+‘work/!+WAITING|+NEXT’
+Select ‘:work:’-tagged TODO lines that are either ‘WAITING’ or ‘NEXT’.
