@@ -312,6 +312,40 @@ M-a 和 M-e
 S-Enter 可以将上一行cell的数据复制到当前空白的cell中, 如果是数字自动增加1。 光标可以在上一行的cell,也可以在下一行空白cell中，都一样。
 注意,如果文本中有小数点就不行了,因此IP地址是不能这样复制的。
 
+*** By converting a region into a table
+Org provides useful ways of converting a region into a table. For this, select a region and press C-c |. For example, press C-c | on this:
+some, comma, separated, values
+
+will automagically produce this:
+| some | comma | separated | values |
+
+Usually, this command should be smart enough to guess what is the field separator for the region. If each line of the active region contains a TAB or a comma, it will assume this is the separator.
+
+If you want to force the comma as a field separator, press C-u C-c |.
+If you want to force TAB as a field separator, press C-u C-u C-c |.
+If you want to force a specific number of spaces – say 3 – use C-u 3 C-c |.
+
+*** narrowing the visible part of a column
+Sometimes cells can get really wide. If you want to restrict the width visible width of a cell, you need to add a new row to your table.
+| <10>             | <15>                        |
+| A very wide cell | Another very very wide cell |
+
+Pressing C-c C-c on this table will update the display so that the first and second columns are respectively narrowed to 10 and 15 characters:
+| <10>     | <15>            |
+| A very=> | Another very => |
+
+When columns are narrowed, it might be useful to temporarily see the content of a cell with C-u <TAB> (or C-u C-c `) or to edit the content in a separate window with C-c `.
+
+*** Grouping columns
+You can group columns like this:
+|   |  N | N^2 | N^3 | N^4 | sqrt(n) | sqrt[4](N) |
+|---+----+-----+-----+-----+---------+------------|
+| / | <> |   < |     |   > |       < |          > |
+| # |  1 |   1 |   1 |   1 |       1 |          1 |
+| # |  2 |   4 |   8 |  16 |  1.4142 |     1.1892 |
+| # |  3 |   9 |  27 |  81 |  1.7321 |     1.3161 |
+|---+----+-----+-----+-----+---------+------------|
+
 ** Link
 链接用于链接一些资源地址，如图片、文件、URL等。
 链接的格式是：
