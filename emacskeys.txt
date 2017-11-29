@@ -267,6 +267,9 @@ Details see: [[http://orgmode.org/manual/Footnotes.html]]
 | S-TAB    | 移动到上一区域                 |
 | RET      | 移动到下一行，必要时新建一行   |
 
+C-c |    (org-table-create-or-convert-from-region)
+C-c -    (org-table-insert-hline)
+
 **** 编辑行和列
 | M-LEFT/RIGHT   | 移动列                           |
 | M-UP/DOWN      | 移动行                           |
@@ -297,6 +300,17 @@ C-Num C-c =     计算Num行 公式中$1代表第一列，以此类推。
 | vpsdev（范围）  | 数据的标准偏差（N）的  |
 | vvar（范围）    | 数据分布               |
 | vmedian（范围） | 中位数的数据（中间值） |
+
+*** cell operate
+删除cell文本
+C-c SPC
+
+跳到开头或者结尾
+M-a 和 M-e 
+
+将上一行Cell的文本复制到下一行
+S-Enter 可以将上一行cell的数据复制到当前空白的cell中, 如果是数字自动增加1。 光标可以在上一行的cell,也可以在下一行空白cell中，都一样。
+注意,如果文本中有小数点就不行了,因此IP地址是不能这样复制的。
 
 ** Link
 链接用于链接一些资源地址，如图片、文件、URL等。
