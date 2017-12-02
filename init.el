@@ -36,7 +36,10 @@
   (require 'init-my-plugin)
 ;  (require 'init-my-python)
   (require 'init-my-language)
-  (require 'init-my-font-setting)
+  (cond
+   ((eq 'window-system nil)
+    (require 'init-my-font-setting)))
+;  (require 'init-my-font-setting)
   (require 'init-my-go)
   (require 'init-my-c)
 ;  (require 'init-md-mode)
