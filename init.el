@@ -44,7 +44,7 @@
   (require 'init-my-c)
 ;  (require 'init-md-mode)
   
-  (require 'init-evil)
+  (require 'init-my-evil)
   
   ;; Windows configuration, assuming that cygwin is installed at "c:/cygwin"
   ;; (condition-case nil
