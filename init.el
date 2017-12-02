@@ -43,6 +43,7 @@
   (require 'init-my-go)
   (require 'init-my-c)
 ;  (require 'init-md-mode)
+;  (require 'init-my-screen-shot)
   
   (require 'init-my-evil)
   
