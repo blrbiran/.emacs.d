@@ -2,6 +2,25 @@
 (setq evil-toggle-key "C-q")	; remove default evil-toggle-key C-z, C-q to replace it.
 (setq evil-want-C-i-jump nil)	; don't bind [tab] to evil-jump-forward
 (require 'evil)
+
+;; Enable evil-leader
+(require 'evil-leader)
+(global-evil-leader-mode)
+
+;; Using Space as a prefix key
+(evil-leader/set-leader "<SPC>")
+
+;; bind several keys at once
+(evil-leader/set-key
+  "e" 'find-file
+  "w" 'save-buffer
+  "b" 'switch-to-buffer
+  "k" 'kill-buffer)
+
+;; Beginning with version 0.3 evil-leader has support for mode-local bindings:
+(evil-leader/set-key-for-mode 'emacs-lisp-mode "b" 'byte-compile-file)
+
+;; Enable evil
 (evil-mode 1)
     
 ;; remove all keybindings from insert-state keymap, use emacs-state when editing
