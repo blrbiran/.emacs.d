@@ -46,6 +46,7 @@
 ;  (require 'init-my-screen-shot)
   
   (require 'init-my-evil)
+  (require 'ox-freemind)
   
   ;; Windows configuration, assuming that cygwin is installed at "c:/cygwin"
   ;; (condition-case nil
