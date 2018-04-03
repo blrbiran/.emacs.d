@@ -5,7 +5,7 @@
   (if (null (x-list-fonts font))
      nil t))
 
-(defvar font-list '("Microsoft Yahei" "宋体" "新宋体" "文泉驿等宽微米黑" "黑体" ))
+(defvar font-list '("Source Code Pro" "Microsoft Yahei" "宋体" "新宋体" "文泉驿等宽微米黑" "黑体" ))
 
 (require 'cl) ;; find-if is in common list package
 (find-if #'qiang-font-existsp font-list)
@@ -49,8 +49,11 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 
 ;(setq face-font-rescale-alist '(("Microsoft Yahei" . 1.2) ("WenQuanYi Zen Hei" . 1.2)))
 
+;(qiang-set-font
+; '("Source Han Sans" "Source Code Pro" "Monaco" "Consolas" "DejaVu Sans Mono" "Monospace" "Courier New") ":pixelsize=15"
+; '("Source Han Sans" "Source Code Pro" "Microsoft Yahei" "文泉驿等宽微米黑" "黑体" "新宋体" "宋体") 16)
 (qiang-set-font
- '("Monaco" "Consolas" "DejaVu Sans Mono" "Monospace" "Courier New") ":pixelsize=15"
+ '("Source Code Pro" "Monaco" "Consolas" "DejaVu Sans Mono" "Monospace" "Courier New") ":pixelsize=14"
  '("Microsoft Yahei" "文泉驿等宽微米黑" "黑体" "新宋体" "宋体") 16)
 
 ;(set-face-attribute 'default nil :font (font-spec))

@@ -1,3 +1,10 @@
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
 
 ;;----------------------------------------------------------------------------
@@ -26,11 +33,12 @@
 
   (require 'init-my-org-mode)
   (require 'init-my-org-agenda)
-;  (require 'init-my-org-latex)
+  (require 'init-my-org-latex)
   (require 'init-color-theme)
 
   (require 'init-my-module)
-  (require 'speak-mode)  ;; my speak mode ; C-c C-a a to speak the buffer; C-c C-a e to interrupt
+;; my speak mode ; C-c C-a a to speak the buffer; C-c C-a e to interrupt
+  (require 'speak-mode)
   
   (require 'init-mysettings)
   (require 'init-my-plugin)
@@ -44,7 +52,7 @@
   (require 'init-my-c)
 ;  (require 'init-md-mode)
 ;  (require 'init-my-screen-shot)
-  
+
   (require 'init-my-evil)
   (require 'ox-freemind)
   
@@ -87,10 +95,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(display-time-mode t)
+ '(package-selected-packages
+   (quote
+    (company-go go-mode smex markdown-mode ggtags find-file-in-project company ace-jump-mode)))
+ '(show-paren-mode t)
+ '(tool-bar-mode nil)
  '(truncate-partial-width-windows nil))
-(custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
