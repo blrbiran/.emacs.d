@@ -37,17 +37,22 @@
   (require 'init-color-theme)
 
   (require 'init-my-module)
-  (require 'speak-mode)  ;; my speak mode ; C-c C-a a to speak the buffer; C-c C-a e to interrupt
+;; my speak mode ; C-c C-a a to speak the buffer; C-c C-a e to interrupt
+  (require 'speak-mode)
   
   (require 'init-mysettings)
   (require 'init-my-plugin)
 ;  (require 'init-my-python)
   (require 'init-my-language)
-  (require 'init-my-font-setting)
+  (cond
+   ((eq 'window-system nil)
+    (require 'init-my-font-setting)))
+;  (require 'init-my-font-setting)
   (require 'init-my-go)
   (require 'init-my-c)
 ;  (require 'init-md-mode)
-  
+;  (require 'init-my-screen-shot)
+
   (require 'init-my-evil)
   (require 'ox-freemind)
   
