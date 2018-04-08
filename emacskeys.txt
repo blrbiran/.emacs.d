@@ -564,6 +564,52 @@ org sites 的解决办法
 (setq org-export-with-sub-superscripts '{})
 这样就会用 {} 来转义了。
 
+** Latex
+文章头可以如下设置
+#+BEGIN_EXAMPLE elisp
+#+LATEX_CLASS: org-article
+#+TITLE: 
+#+AUTHOR: Ran Bi
+#+STARTUP: overview
+#+STARTUP: hidestars
+# STARTUP: showall, overview, context, showeverything
+#+STARTUP: indent
+#+TAGS: { @Document(d) @Bug(b) @Question(q) @Report(r) @Study(s) @Task(t) @SOP(S) }
+#+OPTIONS: H:5 toc:nil
+# #+OPTIONS: \n:t ^:nil
+# #+OPTIONS: tex:dvipng
+#+OPTIONS: tex:t ^:t
+# STARTUP: latexpreview
+# Using MathJax for html preview
+
+# control org-latex output
+# :exports results => code, results, both, none
+#+BEGIN_SRC emacs-lisp :exports results :results silent
+  (require 'ox-latex)
+  (add-to-list 'org-latex-packages-alist '("" "minted"))
+  (setq org-latex-listings 'minted)
+  (setq org-latex-minted-options
+           '(("frame" "single")
+             ("tabsize" "2")
+             ("fontsize" "\\scriptsize")))
+  (setq org-latex-pdf-process
+        '("xelatex -8bit -shell-escape -interaction nonstopmode -output-directory %o %f"
+          "xelatex -8bit -shell-escape -interaction nonstopmode -output-directory %o %f"
+          "xelatex -8bit -shell-escape -interaction nonstopmode -output-directory %o %f"))
+#+END_SRC
+
+#+LaTeX_HEADER: \usepackage{xeCJK}
+#+LaTeX_HEADER: \setCJKmainfont{SimSun}
+#+LaTeX_HEADER: \usepackage{indentfirst}
+#+LaTeX_HEADER: \setlength{\parindent}{2em}
+#+LaTeX_HEADER: \setlength{\parskip}{0.3\baselineskip}
+
+#+Latex: \setcounter{secnumdepth}{5}
+#+Latex: \newpage
+#+TOC: Headlines 5
+#+Latex: \newpag
+#+END_EXAMPLE
+
 * Abbrev Mode 
 C-x a l ：将当前光标之前的单词添加为当前Mode的Abbrev 
 C-x a e ：展开Abbrev 
