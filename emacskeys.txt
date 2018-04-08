@@ -565,6 +565,7 @@ org sites 的解决办法
 这样就会用 {} 来转义了。
 
 ** Latex
+*** Head of org
 文章头可以如下设置
 #+BEGIN_EXAMPLE elisp
 #+LATEX_CLASS: org-article
@@ -609,6 +610,9 @@ org sites 的解决办法
 #+TOC: Headlines 5
 #+Latex: \newpag
 #+END_EXAMPLE
+
+*** 行内公式/行间公式
+org mode内置了加快latex输入的cdlatex组件。在org mode里不建议使用$符号， 而使用\(\)和\[\]作为行内公式和行间公式标志。
 
 * Abbrev Mode 
 C-x a l ：将当前光标之前的单词添加为当前Mode的Abbrev 
