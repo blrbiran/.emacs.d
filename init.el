@@ -53,6 +53,7 @@
 ;  (require 'init-md-mode)
 ;  (require 'init-my-screen-shot)
 
+  (require 'key-chord)
   (require 'init-my-evil)
   (require 'ox-freemind)
   
