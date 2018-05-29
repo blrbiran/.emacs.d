@@ -27,7 +27,7 @@
 (setcdr evil-insert-state-map nil)
     
 ;; ESC to switch back normal-state
-;(define-key evil-insert-state-map (kbd "C-j") 'evil-normal-state)
+(define-key evil-insert-state-map (kbd "C-M-j") 'evil-normal-state)
 (setq key-chord-two-keys-delay 0.5)
 (key-chord-define evil-insert-state-map "jj" 'evil-normal-state)
 (key-chord-mode 1)
