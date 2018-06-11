@@ -52,9 +52,10 @@
   (require 'init-my-c)
 ;  (require 'init-md-mode)
 ;  (require 'init-my-screen-shot)
-
   (require 'key-chord)
   (require 'init-my-evil)
+  (require 'init-my-shortkeys)
+
   (require 'ox-freemind)
   
   ;; Windows configuration, assuming that cygwin is installed at "c:/cygwin"
