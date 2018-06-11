@@ -39,6 +39,13 @@
    (sqlite . t)
    (perl . t)
    (C . t)
+   (plantuml . t)
    ))
+
+;; Using PlantUML for emacs draw UML
+;; site: https://www.cnblogs.com/yangwen0228/p/6825560.html
+;; site: http://plantuml.com/
+(setq org-plantuml-jar-path
+      (expand-file-name "~/.emacs.d/module/plantuml/plantuml.jar"))
 
 (provide 'init-my-org-mode)
