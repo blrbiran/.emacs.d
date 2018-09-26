@@ -29,4 +29,10 @@
 ;;If you use evil
 (define-key evil-normal-state-map (kbd "SPC f") 'ace-jump-mode)
 
+;;Re-arrange shortkey order
+(setq ace-jump-mode-submode-list
+      '(ace-jump-char-mode              ;; the first one always map to: C-c SPC
+        ace-jump-word-mode              ;; the second one always map to: C-u C-c SPC            
+        ace-jump-line-mode) )           ;; the third one always map to: C-u C-u C-c SPC
+
 (provide 'init-my-ace-jump)
