@@ -55,6 +55,7 @@
   (require 'key-chord)
   (require 'init-my-evil)
   (require 'init-my-shortkeys)
+  (require 'init-my-ace-jump)
 
   (require 'ox-freemind)
   
