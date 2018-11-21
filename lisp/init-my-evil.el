@@ -13,7 +13,7 @@
 ;; bind several keys at once
 (evil-leader/set-key
   "e" 'find-file
-  "w" 'save-buffer
+  "s" 'save-buffer
   "b" 'switch-to-buffer
   "k" 'kill-buffer)
 
