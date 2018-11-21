@@ -614,6 +614,135 @@ org sites 的解决办法
 *** 行内公式/行间公式
 org mode内置了加快latex输入的cdlatex组件。在org mode里不建议使用$符号， 而使用\(\)和\[\]作为行内公式和行间公式标志。
 
+* Org-Mode Latex Generate
+** For org header
+
+#+BEGIN_EXAMPLE elisp
+#+LATEX_CLASS: org-article
+#+TITLE: MT8518 USB Bring Up
+#+AUTHOR: Ran Bi
+#+STARTUP: content
+#+STARTUP: hidestars
+# #+STARTUP: showstars
+# STARTUP: showall, overview, context, showeverything
+#+STARTUP: indent
+#+TAGS: { @Document(d) @Bug(b) @Question(q) @Report(r) @Study(s) @Task(t) @SOP(S) }
+#+OPTIONS: H:5 toc:nil ^:nil \n:t
+# OPTIONS: ^:nil => not translate _ as subscript, not translate ^ as superscript
+#+OPTIONS: tex:t
+# #+STARTUP: latexpreview
+
+# control org-latex output
+# :exports results => code, results, both, none
+#+BEGIN_SRC emacs-lisp :exports results :results silent
+  (require 'ox-latex)
+  (add-to-list 'org-latex-packages-alist '("" "minted"))
+  (setq org-latex-listings 'minted)
+  (setq org-latex-minted-options
+           '(("frame" "single")
+             ("tabsize" "2")
+             ("fontsize" "\\scriptsize")))
+  (setq org-latex-pdf-process
+        '("xelatex -8bit -shell-escape -interaction nonstopmode -output-directory %o %f"
+          "xelatex -8bit -shell-escape -interaction nonstopmode -output-directory %o %f"
+          "xelatex -8bit -shell-escape -interaction nonstopmode -output-directory %o %f"))
+#+END_SRC
+
+# Setting Page Margin
+#+LaTeX_HEADER: \usepackage{geometry}
+#+LaTeX_HEADER: \geometry{left=1.5cm,right=1.5cm,top=2.5cm,bottom=2.5cm}
+# Using Chinese Char-Set
+#+LaTeX_HEADER: \usepackage{xeCJK}
+# Chinese Font
+#+LaTeX_HEADER: \setCJKmainfont{SimSun}
+# Indent in First Line
+#+LaTeX_HEADER: \usepackage{indentfirst}
+# Indent length
+#+LaTeX_HEADER: \setlength{\parindent}{2em}
+# Line spacing
+#+LaTeX_HEADER: \setlength{\baselineskip}{15pt}
+# End spacing between paragraphs
+#+LaTeX_HEADER: \setlength{\parskip}{0.1\baselineskip}
+
+# For latex table packages
+#+LaTeX_HEADER: \usepackage[table]{xcolor}
+
+# For nicer list
+#+LaTeX_HEADER: \usepackage{paralist}
+#+LaTeX_HEADER: \let\itemize\compactitem
+#+LaTeX_HEADER: \let\description\compactdesc
+#+LaTeX_HEADER: \let\enumerate\compactenum
+
+#+BEGIN_CENTER
+Document Version: 0.1.0
+#+END_CENTER
+
+#+Latex: \setcounter{secnumdepth}{5}
+#+Latex: \newpage
+#+TOC: Headlines 5
+#+Latex: \newpage
+
+# Using smaller font-size for tables
+#+Latex: \makeatletter \def \@floatboxreset { \reset@font \scriptsize \@setminipage } \makeatother
+#+END_EXAMPLE
+
+** Tex Maker settings
+
+original quick build:
+#+BEGIN_SRC sh
+latex -interaction=nonstopmode %.tex|bibtex %.aux|latex -interaction=nonstopmode %.tex|latex -interaction=nonstopmode %.tex|xdvi %.dvi
+#+END_SRC
+
+original quick build:
+#+BEGIN_SRC sh
+xelatex -8bit -shell-escape -interaction nonstopmode %.tex | xelatex -8bit -shell-escape -interaction nonstopmode %.tex| xelatex -8bit -shell-escape -interaction nonstopmode %.tex|xdvi %.dvi
+#+END_SRC
+
+** Table related
+
+*** table size setting
+
+In the head of the document:
+#+BEGIN_SRC elisp
+# Using smaller font-size for tables
+#+Latex: \makeatletter \def \@floatboxreset { \reset@font \scriptsize \@setminipage } \makeatother
+#+END_SRC
+
+In the head of tables
+#+BEGIN_SRC elisp
+#+CAPTION: xxx(table name)
+#+END_SRC
+
+*** Colorized
+
+In the head of the document (should before \usepackage{tikz})
+#+BEGIN_SRC elisp
+#+LaTeX_HEADER: \usepackage[table]{xcolor}
+#+END_SRC
+
+In the head of tables
+#+BEGIN_SRC elisp
+#+LATEX: \definecolor{contiYellow}{RGB}{255,165,0}
+#+LATEX: \rowcolors[]{2}{contiYellow!5}{contiYellow!20}
+#+CAPTION: xxx(table name)
+#+END_SRC
+
+** Font Size
+\tiny
+\scriptsize
+\footnotesize
+\small
+\normalsize
+\large
+\Large
+\LARGE
+\huge
+\Huge
+
+** Reference
+
+1. [[https://orgmode.org/worg/org-tutorials/org-latex-export.html]]
+
 * Abbrev Mode 
 C-x a l ：将当前光标之前的单词添加为当前Mode的Abbrev 
 C-x a e ：展开Abbrev 
