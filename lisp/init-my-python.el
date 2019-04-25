@@ -1,39 +1,14 @@
+;; Python Settings
 
-(require 'package)
-
-(add-to-list 'package-archives
-       '("melpa" . "https://melpa.org/packages/"))
-(when (< emacs-major-version 24)
-  ;; For important compatibility libraries like cl-lib
-  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
-
-(package-initialize)
-(when (not package-archive-contents)
+(require 'init-my-elpa)
+(when (not package-archive-contents) 
   (package-refresh-contents))
 
-;; (package-refresh-contents)
-
 ;; install packages
-(let ((myPackages
-	   '(ein
-		 elpy
-		 flycheck
-		 material-theme
-		 py-autopep8)))
-
-;; (let ((myPackages
-;; 	   '(ein
-;; 		 elpy
-;; 		 flycheck
-;; 		 material-theme
-;; 		 py-autopep8
-;; 		 ;pymacs
-;; 		 ropemacs)))
-
-  (mapc (lambda (python-package)
-		  (unless (package-installed-p python-package)
-			(package-install python-package)))
-		myPackages))
+(let ((myPackages-python '(ein elpy flycheck material-theme py-autopep8)))
+  (mapc (lambda (python-package) 
+          (unless (package-installed-p python-package) 
+            (package-install python-package))) myPackages-python))
 
 
 ;; BASIC CUSTOMIZATION
@@ -48,8 +23,9 @@
 ;; (elpy-use-cpython)
 
 ;; use flycheck not flymake with elpy
-(when (require 'flycheck nil t)
-  (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+(when 
+    (require 'flycheck nil t) 
+  (setq elpy-modules (delq 'elpy-module-flymake elpy-modules)) 
   (add-hook 'elpy-mode-hook 'flycheck-mode))
 
 ;; enable autopep8 formatting on save

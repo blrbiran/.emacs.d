@@ -1,46 +1,29 @@
+;; Golang settings
 
-
-(require 'package)
-
-(add-to-list 'package-archives
-       '("melpa" . "https://melpa.org/packages/"))
-(when (< emacs-major-version 24)
-  ;; For important compatibility libraries like cl-lib
-  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
-
-(package-initialize)
-(when (not package-archive-contents)
+(require 'init-my-elpa)
+(when (not package-archive-contents) 
   (package-refresh-contents))
 
-;; (package-refresh-contents)
-
 ;; install packages
-(let ((myPackages-go
-	   '(go-mode
-		 flymake
-		 company
-		 company-go)))
-
-
-  (mapc (lambda (go-package)
-		  (unless (package-installed-p go-package)
-			(package-install go-package)))
-		myPackages-go))
-
+(let ((myPackages-go '(go-mode flymake company company-go)))
+  (mapc (lambda (go-package) 
+          (unless (package-installed-p go-package)
+            (package-install go-package)))
+        myPackages-go))
 
 ;; BASIC CUSTOMIZATION
 ;; --------------------------------------
 (require 'go-mode)
 (add-hook 'before-save-hook 'gofmt-before-save)
 
-(add-hook 'go-mode-hook '(lambda ()
-  (local-set-key (kbd "\C-c\C-r") 'go-remove-unused-imports)))
-(add-hook 'go-mode-hook '(lambda ()
-  (local-set-key (kbd "\C-c\C-g") 'go-goto-imports)))
-(add-hook 'go-mode-hook '(lambda ()
-  (local-set-key (kbd "\C-c\C-f") 'gogmt)))
-(add-hook 'go-mode-hook '(lambda ()
-  (local-set-key (kbd "\C-c\C-k") 'godoc)))
+(add-hook 'go-mode-hook '(lambda () 
+                           (local-set-key (kbd "\C-c\C-r") 'go-remove-unused-imports)))
+(add-hook 'go-mode-hook '(lambda () 
+                           (local-set-key (kbd "\C-c\C-g") 'go-goto-imports)))
+(add-hook 'go-mode-hook '(lambda () 
+                           (local-set-key (kbd "\C-c\C-f") 'gogmt)))
+(add-hook 'go-mode-hook '(lambda () 
+                           (local-set-key (kbd "\C-c\C-k") 'godoc)))
 
 ;; use "go get github.com/nsf/gocode" to install gocode
 
@@ -48,11 +31,10 @@
 (add-to-list 'load-path "$GOPATH/src/github.com/dougm/goflymake")
 ;;(require 'go-flymake)
 
-
 (add-hook 'go-mode-hook 'company-mode)
-(add-hook 'go-mode-hook (lambda ()
-  (set (make-local-variable 'company-backends) '(company-go))
-  (company-mode)))
-
+(add-hook 'go-mode-hook (lambda () 
+                          (set (make-local-variable 'company-backends) 
+                               '(company-go)) 
+                          (company-mode)))
 
 (provide 'init-my-go)

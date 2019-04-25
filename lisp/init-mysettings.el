@@ -4,22 +4,6 @@
 ;; 在标题栏提示你目前在什么位置
 (setq frame-title-format "emacs@%b")
 
-
-;; use melpa
-(require 'package)
-;(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-;; (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
-;;                     (not (gnutls-available-p))))
-;;        (url (concat (if no-ssl "http" "https") "://melpa.org/packages/")))
-;;   (add-to-list 'package-archives (cons "melpa" url) t))
-;(when (< emacs-major-version 24)
-  ;; For important compatibility libraries like cl-lib
-;  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
-(setq package-archives '(("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-                         ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
-                         ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
-(package-initialize)
-
 ;; 设置有用的个人信息,这在很多地方有用。
 (setq user-full-name "Biran")
 (setq user-mail-address "blrbiran@163.com")
