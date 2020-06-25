@@ -37,7 +37,9 @@
 (let ((file-name-handler-alist nil)) 
   (require 'init-site-lisp) ;; Must come before elpa, as it may provide package.el ,before package from dir "site-lisp"
   (require 'init-my-elpa)   ;; Load elpa settings
-  (require 'init-my-org-mode) 
+  (require 'init-my-org-mode)
+;  (require use-package)
+;  (use-package init-my-org-mode :defer 1)
   (require 'init-my-org-agenda) 
   (require 'init-my-org-latex) 
   (require 'init-color-theme)
@@ -74,7 +76,7 @@
  '(display-time-mode t)
  '(package-selected-packages
    (quote
-    (company-go go-mode smex markdown-mode ggtags find-file-in-project company ace-jump-mode)))
+    (use-package linum-relative company-go go-mode smex markdown-mode ggtags find-file-in-project company ace-jump-mode)))
  '(show-paren-mode t)
  '(tool-bar-mode nil)
  '(truncate-partial-width-windows nil))

@@ -14,14 +14,16 @@
   (package-refresh-contents))
 
 ;; Install packages
-(let ((myPackages-plugin '(smex                 ;; ido in M-x
-                           company              ;; auto completition
-                           find-file-in-project ;; find file in project
-                           flymake              ;; code check
-                           ace-jump-mode ;; easy jump in document
-                           markdown-mode ;; highlight for markdown, etc.
-                           which-key     ;; which-key-mode
-                           )))
+(let ((myPackages-plugin
+       '(smex                 ;; ido in M-x
+         company              ;; auto completition
+         find-file-in-project ;; find file in project
+         flymake              ;; code check
+         ace-jump-mode ;; easy jump in document
+         markdown-mode ;; highlight for markdown, etc.
+         which-key     ;; which-key-mode
+         linum-relative ;; show relative line number
+         )))
   (mapc (lambda (go-package) 
           (unless (package-installed-p go-package) 
             (package-install go-package))) myPackages-plugin))
@@ -143,5 +145,15 @@
 ;; which-key-mode
 (require 'which-key)
 (which-key-mode t)
+
+;; linum-relative
+;; M-x package-install linum-relative
+(global-linum-mode t)
+;(global-display-line-numbers-mode t)
+(require 'linum-relative)
+(setq linum-relative-backend 'display-line-numbers-mode)
+(linum-relative-global-mode t)
+;; C-c l: linum-relative toggle
+(define-key global-map (kbd "C-c l") 'linum-relative-toggle)
 
 (provide 'init-my-plugin)

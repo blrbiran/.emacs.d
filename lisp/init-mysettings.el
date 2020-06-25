@@ -144,7 +144,8 @@
 ;; 另外说一句，M-x auto-fill-mode也是切换换行模式，不过这是要在文章内容里插入回车符号
 
 ;; 9 显示行号
-(global-linum-mode t)
+;; Defined in 'init-my-plugin.el
+;(global-linum-mode t)
 
 ;; 10 改变 Emacs 固执的要你回答 yes 的行为。按 y 或空格键表示 yes，n 表示 no。
 (fset 'yes-or-no-p 'y-or-n-p)
