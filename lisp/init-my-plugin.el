@@ -22,7 +22,6 @@
                            markdown-mode ;; highlight for markdown, etc.
                            which-key     ;; which-key-mode
                            )))
-
   (mapc (lambda (go-package) 
           (unless (package-installed-p go-package) 
             (package-install go-package))) myPackages-plugin))

@@ -1,3 +1,10 @@
+;; Make startup faster by reducing the frequency of barbage collection.
+;; The default is 0.8MB. Measured in bytes.
+(setq gc-cons-threshold (* 50 1000 1000))
+;; Portion of heap used for allocation. Defaults to 0.1.
+(setq gc-cons-percentage 0.6)
+
+
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
@@ -12,20 +19,14 @@
 (setq *is-a-mac* (eq system-type 'darwin) )
 (setq *win64* (eq system-type 'windows-nt) )
 (setq *cygwin* (eq system-type 'cygwin) )
-(setq *linux* (or (eq system-type 'gnu/linux) 
-                  (eq system-type 'linux)) )
-(setq *unix* (or *linux* 
-                 (eq system-type 'usg-unix-v) 
-                 (eq system-type 'berkeley-unix)) )
-(setq *emacs24* (and (not 
-                      (featurep 'xemacs)) 
-                     (or (>= emacs-major-version 24))) )
-(setq *no-memory* (cond (*is-a-mac* (< (string-to-number (nth 1 (split-string
-                                                                 (shell-command-to-string
-                                                                  "sysctl hw.physmem"))))
-                                       4000000000)) 
-                        (*linux* nil) 
-                        (t nil)))
+(setq *linux* (or (eq system-type 'gnu/linux) (eq system-type 'linux)) )
+(setq *unix* (or *linux* (eq system-type 'usg-unix-v) (eq system-type 'berkeley-unix)) )
+(setq *emacs24* (and (not (featurep 'xemacs)) (or (>= emacs-major-version 24))) )
+(setq *no-memory* (cond
+                   (*is-a-mac*
+                    (< (string-to-number (nth 1 (split-string (shell-command-to-string "sysctl hw.physmem")))) 4000000000))
+                   (*linux* nil)
+                   (t nil)) )
 
 ;; @see https://www.reddit.com/r/emacs/comments/3kqt6e/2_easy_little_known_steps_to_speed_up_emacs_start/
 ;; Normally file-name-handler-alist is set to
@@ -87,3 +88,15 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;; Make gc pauses faster by decreasing the threshold.
+(setq gc-cons-threshold (* 2 1000 1000))
+;; Use a hook so the message doesn't get clobbered by other messages.
+(add-hook 'emacs-startup-hook
+          (defun show-startup-time()
+            (message "Emacs ready in %s"
+                     (format "%.2f seconds"
+                             (float-time
+                              (time-subtract after-init-time
+                                             before-init-time))))))
+
