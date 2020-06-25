@@ -36,12 +36,14 @@
 ;; Which means on every .el and .elc file loaded during start up, it has to runs those regexps against the filename.
 (let ((file-name-handler-alist nil)) 
   (require 'init-site-lisp) ;; Must come before elpa, as it may provide package.el ,before package from dir "site-lisp"
+  (require 'use-package) ;; Load use-package so that we can load other packages later
   (require 'init-my-elpa)   ;; Load elpa settings
-  (require 'init-my-org-mode)
-;  (require use-package)
-;  (use-package init-my-org-mode :defer 1)
-  (require 'init-my-org-agenda) 
-  (require 'init-my-org-latex) 
+  ;; (require 'init-my-org-mode)
+  ;; (require 'init-my-org-agenda)
+  ;; (require 'init-my-org-latex)
+  (use-package init-my-org-mode :defer 1)
+  (use-package init-my-org-agenda :defer 1)
+  (use-package init-my-org-latex :defer 1)
   (require 'init-color-theme)
   (require 'init-my-module)
   ;; my speak mode ; C-c C-a a to speak the buffer; C-c C-a e to interrupt
@@ -76,7 +78,7 @@
  '(display-time-mode t)
  '(package-selected-packages
    (quote
-    (use-package linum-relative company-go go-mode smex markdown-mode ggtags find-file-in-project company ace-jump-mode)))
+    (linum-relative company-go go-mode smex markdown-mode ggtags find-file-in-project company ace-jump-mode)))
  '(show-paren-mode t)
  '(tool-bar-mode nil)
  '(truncate-partial-width-windows nil))
