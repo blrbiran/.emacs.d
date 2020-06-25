@@ -31,6 +31,9 @@
   (setq c-basic-offset 4))
 (add-hook 'c-mode-hook 'bi-c-indent)
 
+;; Highlight trailing whitespace
+(setq show-trailing-whitespace t)
+
 ;; 显示括号匹配
 (show-paren-mode t)
 (setq show-paren-style 'parentheses)
