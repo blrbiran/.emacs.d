@@ -34,7 +34,7 @@
 ;; ("\\`/[^/|:][^/|]*:" . tramp-file-name-handler)
 ;; ("\\`/:" . file-name-non-special))
 ;; Which means on every .el and .elc file loaded during start up, it has to runs those regexps against the filename.
-(let ((file-name-handler-alist nil)) 
+(let ((file-name-handler-alist nil))
   (require 'init-site-lisp) ;; Must come before elpa, as it may provide package.el ,before package from dir "site-lisp"
   (require 'use-package) ;; Load use-package so that we can load other packages later
   (require 'init-my-elpa)   ;; Load elpa settings
@@ -48,27 +48,27 @@
   (require 'init-my-module)
   ;; my speak mode ; C-c C-a a to speak the buffer; C-c C-a e to interrupt
   (require 'speak-mode)
-  (require 'init-my-plugin) 
+  (require 'init-my-plugin)
   (require 'init-mysettings)
   ;;  (require 'init-my-python)
-  (require 'init-my-language) 
-  (cond ((eq 'window-system nil) 
+  (require 'init-my-language)
+  (cond ((eq 'window-system nil)
          (require 'init-my-font-setting)))
   ;;  (require 'init-my-font-setting)
-  (require 'init-my-go) 
+  (require 'init-my-go)
   (require 'init-my-c)
   ;;  (require 'init-md-mode)
   ;;  (require 'init-my-screen-shot)
-  (require 'key-chord) 
-  (require 'init-my-evil) 
-  (require 'init-my-shortkeys) 
-  (require 'init-my-ace-jump) 
+  (require 'key-chord)
+  (require 'init-my-evil)
+  (require 'init-my-shortkeys)
+  (require 'init-my-ace-jump)
   (require 'init-my-elisp)
   (require 'ox-freemind)
 
   ;; my personal setup, other major-mode specific setup need it.
   ;; It's dependent on init-site-lisp.el
-  (if (file-exists-p "~/.custom.el") 
+  (if (file-exists-p "~/.custom.el")
       (load-file "~/.custom.el")))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -103,4 +103,3 @@
                              (float-time
                               (time-subtract after-init-time
                                              before-init-time))))))
-
