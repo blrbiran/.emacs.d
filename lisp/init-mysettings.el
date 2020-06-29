@@ -12,7 +12,7 @@
 (setq inhibit-startup-message t)
 
 ;; TAB 转换为 Space
-(setq-default indent-tabs-mode nil)
+;(setq-default indent-tabs-mode nil)
 ;(setq indent-tabs-mode nil)
 
 ;; tab键为4个字符宽度
@@ -30,9 +30,6 @@
   (setq tab-width 4)
   (setq c-basic-offset 4))
 (add-hook 'c-mode-hook 'bi-c-indent)
-
-;; Highlight trailing whitespace
-;(setq show-trailing-whitespace t)
 
 ;; 显示括号匹配
 (show-paren-mode t)
@@ -91,7 +88,8 @@
 ;;(setq-default cursor-type 'box)
 
 ;; 让emacs显示tab,空格，换行符等
-(global-set-key [f12] 'whitespace-mode)
+;; (global-set-key [f12] 'whitespace-mode)
+(global-set-key [f12] 'global-whitespace-mode)
 
 ;; toggle cua-mode
 (global-set-key [f9] 'cua-mode)
@@ -147,7 +145,7 @@
 ;; 另外说一句，M-x auto-fill-mode也是切换换行模式，不过这是要在文章内容里插入回车符号
 
 ;; 9 显示行号
-;; Defined in 'init-my-plugin.el
+;; Defined in 'init-my-plugin.el'
 ;(global-linum-mode t)
 
 ;; 10 改变 Emacs 固执的要你回答 yes 的行为。按 y 或空格键表示 yes，n 表示 no。
@@ -160,7 +158,7 @@
   (eshell name)
 )
 
-;; 14 用C-z k快速打开自定义的按键说明文件
+;; 14.1 用C-z k快速打开自定义的按键说明文件
 (defun open-key-info-file()
   (interactive)
   (split-window-horizontally)
@@ -172,11 +170,16 @@
 (global-set-key "\C-zk" 'open-key-info-file)
 
 
-;; git-emacs
-;;git clone https://github.com/tsgates/git-emacs.git
-(add-to-list 'load-path "~/.emacs.d/git-emacs/")
-(require 'git-emacs)
+;; 14.2 用C-z h快速打开自定义的command文件
+(defun open-command-helper-file()
+  (interactive)
+  (split-window-horizontally)
+  (find-file-other-window "~/.emacs.d/command.txt")
+  (org-mode)
+;  (outline-mode)
+  (hide-body))
 
+(global-set-key "\C-zh" 'open-command-helper-file)
 
 
 ;; 显示时间，格式如下

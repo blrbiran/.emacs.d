@@ -1,9 +1,10 @@
 ;; 将~/org/todo.org替换为todo.org实际路径
 ;;(setq org-agenda-files (list "~/org/todo.org"))
-(setq org-agenda-files (list "~/org/inbox.org"
+(setq org-agenda-files (list
                              "~/org/task.org"
                              "~/org/note.org"
-                             "~/org/project.org"
+                             "~/org/bringup.org"
+                             "~/org/done-2019.org"
                              "~/org/done.org"))
 
 ;; 设置C-c C-w可以切换的文件和深度
@@ -40,7 +41,8 @@
 
 (setq org-capture-templates
 	'(("t" "Todo" entry (file+headline "~/org/task.org" "Task")
-		"* TODO %?\n  SCHEDULED: %t\n%i")
+		"* TODO %^ %^g\n  SCHEDULED: %t DEADLINE: %^t\n%i")
+		;"* TODO %?\n  SCHEDULED: %t\n%i")
 	("n" "New" entry (file+headline "~/org/inbox.org" "Inbox")
 		"* TODO %?\n  SCHEDULED: %t\n  %i\n  %a")
 	("r" "Note" entry (file+headline "~/org/note.org" "Note")

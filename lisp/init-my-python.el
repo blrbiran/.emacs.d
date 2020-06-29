@@ -1,13 +1,13 @@
 ;; Python Settings
 
 (require 'init-my-elpa)
-(when (not package-archive-contents) 
+(when (not package-archive-contents)
   (package-refresh-contents))
 
 ;; install packages
 (let ((myPackages-python '(ein elpy flycheck material-theme py-autopep8)))
-  (mapc (lambda (python-package) 
-          (unless (package-installed-p python-package) 
+  (mapc (lambda (python-package)
+          (unless (package-installed-p python-package)
             (package-install python-package))) myPackages-python))
 
 
@@ -23,9 +23,9 @@
 ;; (elpy-use-cpython)
 
 ;; use flycheck not flymake with elpy
-(when 
-    (require 'flycheck nil t) 
-  (setq elpy-modules (delq 'elpy-module-flymake elpy-modules)) 
+(when
+    (require 'flycheck nil t)
+  (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
   (add-hook 'elpy-mode-hook 'flycheck-mode))
 
 ;; enable autopep8 formatting on save

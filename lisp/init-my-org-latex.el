@@ -26,16 +26,17 @@
 
 ;; org latex size
 (require 'org)
-(setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0)) 
+(setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))
 
 ;;org-export latex
 (add-to-list 'org-latex-classes
 '("org-article"
 "\\documentclass[11pt,a4paper]{article}
 \\usepackage{graphicx}
-\\usepackage{xcolor}
+%\\usepackage{xcolor}
+\\usepackage[table]{xcolor}
 \\usepackage{xeCJK}
-\\usepackage{fixltx2e}
+%\\usepackage{fixltx2e}
 \\usepackage{longtable}
 \\usepackage{float}
 \\usepackage{tikz}
