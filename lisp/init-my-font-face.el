@@ -1,7 +1,7 @@
 (require 'whitespace)
 ;(setq whitespace-style '(face empty space tabs lines-tail trailing))
-(setq whitespace-style '(face empty tabs lines-tail trailing indentation::tab))
-(global-whitespace-mode t)
+;(setq whitespace-style '(face empty tabs lines-tail trailing indentation::tab))
+;(global-whitespace-mode t)
 ;; (custom-set-faces
 ;;    '(my-tab-face            ((((class color)) (:background "grey10"))) t)
 ;;    '(my-trailing-space-face ((((class color)) (:background "red10"))) t)

@@ -8,7 +8,8 @@
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
-(package-initialize)
+(when (version< emacs-version "27.0")
+  (package-initialize))
 
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
 
@@ -47,12 +48,12 @@
 		   (format "%.2f seconds"
 				   (float-time (time-subtract after-init-time before-init-time))))
 
-  ;; (require 'init-my-org-mode)
-  ;; (require 'init-my-org-agenda)
-  ;; (require 'init-my-org-latex)
-  (use-package init-my-org-mode :defer 1)
-  (use-package init-my-org-agenda :defer 1)
-  (use-package init-my-org-latex :defer 1)
+  (require 'init-my-org-mode)
+  (require 'init-my-org-agenda)
+  (require 'init-my-org-latex)
+;  (use-package init-my-org-mode :defer 1)
+;  (use-package init-my-org-agenda :defer 1)
+;  (use-package init-my-org-latex :defer 1)
 
   (message "Emacs load org mode settings in %s"
 		   (format "%.2f seconds"

@@ -50,4 +50,7 @@
 (setq org-plantuml-jar-path
 	  (expand-file-name "~/.emacs.d/module/plantuml/plantuml.jar"))
 
+(with-eval-after-load 'org
+  (add-to-list 'org-export-backends 'md))
+
 (provide 'init-my-org-mode)
