@@ -1,3 +1,5 @@
+;; Disable warning for using package cl
+(setq byte-compile-warnings '(cl-functions))
 ;; Make startup faster by reducing the frequency of garbage collection.
 ;; The default is 0.8MB. Measured in bytes.
 (setq gc-cons-threshold (* 50 1000 1000))
@@ -166,8 +168,7 @@
  ;; If there is more than one, they won't work right.
  '(display-time-mode t)
  '(package-selected-packages
-   (quote
-    (linum-relative which-key-posframe which-key company-go go-mode smex markdown-mode ggtags find-file-in-project company ace-jump-mode)))
+   '(linum-relative which-key-posframe which-key company-go go-mode smex markdown-mode ggtags find-file-in-project company ace-jump-mode))
  '(show-paren-mode t)
  '(tool-bar-mode nil)
  '(truncate-partial-width-windows nil))
