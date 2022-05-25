@@ -53,18 +53,12 @@
   (require 'init-my-org-mode)
   (require 'init-my-org-agenda)
   (require 'init-my-org-latex)
+  (require 'init-my-org-roam)
 ;  (use-package init-my-org-mode :defer 1)
 ;  (use-package init-my-org-agenda :defer 1)
 ;  (use-package init-my-org-latex :defer 1)
 
   (message "Emacs load org mode settings in %s"
-		   (format "%.2f seconds"
-				   (float-time (time-subtract after-init-time before-init-time))))
-
-  (require 'init-color-theme)
-  ;; (use-package init-color-theme :defer 1)
-
-  (message "Emacs load color-theme settings in %s"
 		   (format "%.2f seconds"
 				   (float-time (time-subtract after-init-time before-init-time))))
 
@@ -81,6 +75,13 @@
 				   (float-time (time-subtract after-init-time before-init-time))))
 
   (require 'init-my-plugin)
+
+  (require 'init-color-theme)
+  ;; (use-package init-color-theme :defer 1)
+
+  (message "Emacs load color-theme settings in %s"
+		   (format "%.2f seconds"
+				   (float-time (time-subtract after-init-time before-init-time))))
 
   ;; my speak mode ; C-c C-a a to speak the buffer; C-c C-a e to interrupt
   (require 'speak-mode)

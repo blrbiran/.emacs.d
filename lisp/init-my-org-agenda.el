@@ -3,8 +3,6 @@
 (setq org-agenda-files (list
                              "~/org/task.org"
                              "~/org/note.org"
-                             "~/org/bringup.org"
-                             "~/org/done-2019.org"
                              "~/org/done.org"))
 
 ;; 设置C-c C-w可以切换的文件和深度
@@ -41,14 +39,14 @@
 
 (setq org-capture-templates
 	'(("t" "Todo" entry (file+headline "~/org/task.org" "Task")
-		"* TODO %^ %^g\n  SCHEDULED: %t DEADLINE: %^t\n%i")
+		"* TODO %^ %^g\n  SCHEDULED: %t DEADLINE: %^t\n%i" :empty-lines 1)
 		;"* TODO %?\n  SCHEDULED: %t\n%i")
 	("n" "New" entry (file+headline "~/org/inbox.org" "Inbox")
-		"* TODO %?\n  SCHEDULED: %t\n  %i\n  %a")
+		"* TODO %?\n  SCHEDULED: %t\n  %i\n  %a" :empty-lines 1)
 	("r" "Note" entry (file+headline "~/org/note.org" "Note")
-		"* %?\n  %i\n  %a")
+		"* %?\n  %i\n  %a" :empty-lines 1)
 	("p" "Project" entry (file+datetree "~/org/project.org")
-		"* %?\n  SCHEDULED: %t\n  %i\n  %a")))
+		"* %?\n  SCHEDULED: %t\n  %i\n  %a" :empty-lines 1)))
 
 ;; 绑定 C-c a 键打开日程表
 (global-set-key "\C-ca" 'org-agenda)
