@@ -23,6 +23,9 @@
          markdown-mode        ;; highlight for markdown, etc.
          which-key            ;; which-key-mode
          linum-relative       ;; show relative line number
+         evil                 ;; vim operate method
+         evil-leader          ;; vim leader function
+         org
          org-roam             ;; org note
          spacemacs-theme ;; spacemacs theme
          )))

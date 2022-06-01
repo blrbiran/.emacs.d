@@ -53,4 +53,7 @@
 (with-eval-after-load 'org
   (add-to-list 'org-export-backends 'md))
 
+;; Got <s tab completion back. Otherwise use C-c C-, instead
+(add-to-list 'org-modules 'org-tempo t)
+
 (provide 'init-my-org-mode)

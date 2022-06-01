@@ -35,7 +35,9 @@
 (key-chord-mode 1)
 
 ;; TAB to indent in normal-state
-(define-key evil-normal-state-map (kbd "TAB") 'indent-for-tab-command)
+;(define-key evil-normal-state-map (kbd "TAB") 'indent-for-tab-command)
+;; Enable tab in org-mode with evil normal mode
+(evil-define-key 'normal org-mode-map (kbd "<tab>") #'org-cycle)
 
 ;; Use j/k to move one visual line insted of gj/gk
 (define-key evil-normal-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)

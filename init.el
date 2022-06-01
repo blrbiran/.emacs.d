@@ -50,6 +50,15 @@
 		   (format "%.2f seconds"
 				   (float-time (time-subtract after-init-time before-init-time))))
 
+  (require 'init-my-plugin)
+
+  (require 'init-color-theme)
+  ;; (use-package init-color-theme :defer 1)
+
+  (message "Emacs load color-theme settings in %s"
+		   (format "%.2f seconds"
+				   (float-time (time-subtract after-init-time before-init-time))))
+
   (require 'init-my-org-mode)
   (require 'init-my-org-agenda)
   (require 'init-my-org-latex)
@@ -71,15 +80,6 @@
   (require 'init-mysettings)
 
   (message "Emacs load basic settings in %s"
-		   (format "%.2f seconds"
-				   (float-time (time-subtract after-init-time before-init-time))))
-
-  (require 'init-my-plugin)
-
-  (require 'init-color-theme)
-  ;; (use-package init-color-theme :defer 1)
-
-  (message "Emacs load color-theme settings in %s"
 		   (format "%.2f seconds"
 				   (float-time (time-subtract after-init-time before-init-time))))
 
@@ -169,7 +169,8 @@
  ;; If there is more than one, they won't work right.
  '(display-time-mode t)
  '(package-selected-packages
-   '(spacemacs-theme org-roam linum-relative which-key-posframe which-key company-go go-mode smex markdown-mode ggtags find-file-in-project company ace-jump-mode))
+   '(org spacemacs-theme org-roam linum-relative which-key-posframe which-key company-go go-mode smex markdown-mode ggtags find-file-in-project company ace-jump-mode))
+ '(safe-local-variable-values '((eval org-content 2)))
  '(show-paren-mode t)
  '(tool-bar-mode nil)
  '(truncate-partial-width-windows nil))

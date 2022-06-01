@@ -209,9 +209,12 @@
 
 ;; 设置初始目录为
 (cond
- (*win64* (setq default-directory "e:/emacs"))
+ (*win64* (setq default-directory "e:/emacs/"))
  (*is-a-mac* (setq default-directory "~/"))
  (*linux* (setq default-directory "~/")))
 
+;; Set exec-path
+(cond
+ (*is-a-mac* (setq exec-path (append exec-path '("/opt/homebrew/bin/")))))
 
 (provide 'init-mysettings)
