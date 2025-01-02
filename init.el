@@ -169,7 +169,7 @@
  ;; If there is more than one, they won't work right.
  '(display-time-mode t)
  '(package-selected-packages
-   '(org spacemacs-theme org-roam linum-relative which-key-posframe which-key company-go go-mode smex markdown-mode ggtags find-file-in-project company ace-jump-mode))
+   '(org-roam-ui org spacemacs-theme org-roam linum-relative which-key-posframe which-key company-go go-mode smex markdown-mode ggtags find-file-in-project company ace-jump-mode))
  '(safe-local-variable-values '((eval org-content 2)))
  '(show-paren-mode t)
  '(tool-bar-mode nil)
